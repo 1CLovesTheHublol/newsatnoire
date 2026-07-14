@@ -79,7 +79,7 @@ The update focuses on expanding functionality while preserving key elements:
 
 ---
 
-## Future Development
+## Future Development (!)
 
 Upcoming versions will expand 'News At Noire' into a complete editorial ecosystem with:
 
