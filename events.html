@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Events — News At Noire</title>
+<style>
+  :root{
+    --cream:#F4F1EA;--cream-2:#EDE8DC;--ink:#1A1A1A;--maroon:#6E1423;--maroon-2:#8A1E2F;
+    --muted:#6b6256;--serif:Georgia,'Times New Roman',Times,serif;
+    --sans:'Helvetica Neue',Arial,Helvetica,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);color:var(--ink);font-family:var(--serif);line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit}
+
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(244,241,234,.92);backdrop-filter:saturate(120%) blur(6px);border-bottom:1px solid var(--ink)}
+  .topbar-inner{max-width:1180px;margin:0 auto;padding:12px clamp(16px,3vw,24px);display:flex;flex-wrap:wrap;align-items:center;gap:10px clamp(12px,2vw,28px)}
+  .brandmark{order:1;font-family:var(--serif);font-size:clamp(1.02rem,1.4vw,1.2rem);letter-spacing:.02em;white-space:nowrap}
+  .brandmark em{font-style:italic;color:var(--maroon)}
+  .nav-links{order:3;flex-basis:100%;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(9px,1vw,14px);row-gap:8px;padding-top:11px;border-top:1px solid rgba(26,26,26,.16)}
+  .nav-links a{font-family:var(--sans);font-size:clamp(.6rem,.72vw,.68rem);letter-spacing:.13em;text-transform:uppercase;color:var(--ink);padding:4px 0;border-bottom:1px solid transparent;transition:border-color .15s,color .15s}
+  .nav-links a:hover,.nav-links a[aria-current]{color:var(--maroon);border-color:var(--maroon)}
+  .nav-links a.home{display:inline-flex;align-items:center;gap:7px}
+  .nav-links a.home svg{width:14px;height:14px;flex:none}
+  .nav-links a + a::before{content:"\2022";margin-right:clamp(9px,1vw,14px);color:var(--ink);opacity:.5;font-size:.5rem;line-height:1;vertical-align:middle}
+  .nav-cta{order:2;margin-left:auto;flex:none;position:relative;overflow:hidden;isolation:isolate;font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;background:var(--maroon);border:1px solid var(--maroon);color:var(--cream);padding:7px 16px;transition:background .15s;white-space:nowrap}
+  .nav-cta:hover{background:var(--maroon-2)}
+  .nav-cta::before{content:"";position:absolute;top:0;left:-130%;width:55%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);z-index:1}
+  .nav-cta:hover::before{animation:noire-sheen .9s ease}
+  .nav-cta::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;background-repeat:no-repeat;background-image:radial-gradient(circle,#fff 1.1px,transparent 1.6px),radial-gradient(circle,#fff 1px,transparent 1.5px),radial-gradient(circle,#fff 1.2px,transparent 1.7px),radial-gradient(circle,#fff 1px,transparent 1.5px);background-position:18% 32%,72% 58%,44% 78%,86% 24%}
+  .nav-cta:hover::after{animation:noire-sparkle 1s ease-in-out infinite}
+  @keyframes noire-sheen{from{left:-130%}to{left:160%}}
+  @keyframes noire-sparkle{0%,100%{opacity:0}50%{opacity:.95}}
+
+  .kicker{font-family:var(--sans);text-transform:uppercase;letter-spacing:.24em;font-size:.68rem;color:var(--maroon)}
+
+  .sec-masthead{max-width:1180px;margin:0 auto;padding:56px 24px 26px;text-align:center;border-bottom:1px solid var(--ink)}
+  .sec-masthead .kicker{display:block;margin-bottom:16px}
+  .sec-masthead h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,7vw,4.6rem);line-height:1}
+  .sec-masthead h1 em{font-style:italic;color:var(--maroon)}
+  .sec-masthead .rule{height:2px;background:var(--ink);max-width:420px;margin:20px auto 16px}
+  .sec-masthead p{font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,2.3vw,1.35rem);color:#3a352d;max-width:60ch;margin:0 auto}
+
+  /* Featured event with countdown */
+  .feature{max-width:1180px;margin:0 auto;padding:34px 24px 10px}
+  .feature-card{border:1px solid var(--ink);background:linear-gradient(160deg,#230810,#4a0f1a 60%,#6E1423);color:var(--cream);display:grid;grid-template-columns:1.4fr 1fr;gap:0}
+  .feature-card .info{padding:38px 34px}
+  .feature-card .type{font-family:var(--sans);font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:#e0a4ad;margin-bottom:16px;display:block}
+  .feature-card h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,3.6vw,2.7rem);line-height:1.12;margin-bottom:14px}
+  .feature-card .when{font-family:var(--sans);font-size:.82rem;letter-spacing:.06em;color:#e9dcd0;margin-bottom:22px;display:flex;flex-wrap:wrap;gap:8px 18px}
+  .feature-card .when span{display:inline-flex;align-items:center;gap:8px}
+  .feature-card .actions{display:flex;flex-wrap:wrap;gap:12px}
+  .feature-card .actions a{font-family:var(--sans);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:12px 20px;border:1px solid var(--cream);color:var(--cream);transition:all .15s}
+  .feature-card .actions .reg{background:var(--cream);color:var(--maroon)}
+  .feature-card .actions .reg:hover{background:transparent;color:var(--cream)}
+  .feature-card .actions .cal:hover{background:var(--cream);color:var(--maroon)}
+  .feature-card .count{border-left:1px solid rgba(244,241,234,.25);padding:38px 30px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:14px}
+  .feature-card .count .lbl{font-family:var(--sans);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:#e0a4ad}
+  .countdown{display:flex;gap:14px}
+  .countdown .unit{text-align:center;min-width:58px}
+  .countdown .unit b{font-family:var(--serif);font-size:2.4rem;font-weight:400;display:block;line-height:1}
+  .countdown .unit small{font-family:var(--sans);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:#c9b3b7}
+
+  /* Type filter */
+  .ev-types{max-width:1180px;margin:0 auto;padding:22px 24px 6px;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+  .ev-types button{font-family:var(--sans);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);padding:7px 13px;border:1px solid rgba(26,26,26,.35);background:none;cursor:pointer;transition:all .12s}
+  .ev-types button:hover{border-color:var(--maroon);color:var(--maroon)}
+  .ev-types button[aria-pressed="true"]{background:var(--maroon);border-color:var(--maroon);color:var(--cream)}
+
+  /* Upcoming list */
+  .section-head{max-width:1180px;margin:0 auto;padding:30px 24px 6px;display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+  .section-head h2{font-size:1.15rem;font-weight:400;letter-spacing:.02em}
+  .section-head a{font-family:var(--sans);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon)}
+  .ev-list{max-width:1180px;margin:0 auto;padding:14px 24px 40px}
+  .ev-row{display:grid;grid-template-columns:96px 1fr auto;gap:24px;align-items:center;border-top:1px solid var(--ink);padding:22px 0}
+  .ev-row .date{text-align:center;border-right:1px solid rgba(26,26,26,.25);padding-right:20px}
+  .ev-row .date b{font-family:var(--serif);font-size:2rem;font-weight:400;display:block;line-height:1}
+  .ev-row .date small{font-family:var(--sans);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .ev-row .meta .type{font-family:var(--sans);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--maroon);display:block;margin-bottom:6px}
+  .ev-row .meta h3{font-family:var(--serif);font-weight:400;font-size:1.35rem;line-height:1.15;margin-bottom:6px}
+  .ev-row .meta p{font-family:var(--sans);font-size:.8rem;color:var(--muted)}
+  .ev-row .cta a{font-family:var(--sans);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;padding:10px 18px;border:1px solid var(--ink);transition:all .15s;white-space:nowrap}
+  .ev-row .cta a:hover{background:var(--ink);color:var(--cream)}
+
+  footer{background:var(--ink);color:var(--cream);margin-top:20px}
+  .foot-inner{max-width:1180px;margin:0 auto;padding:48px 24px 30px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px}
+  .foot-brand .wm{font-family:var(--serif);font-size:1.7rem}
+  .foot-brand .wm em{font-style:italic;color:#e0a4ad}
+  .foot-brand p{font-family:var(--sans);font-size:.76rem;letter-spacing:.04em;color:#c9c3b7;margin-top:12px;max-width:34ch}
+  .foot-col h5{font-family:var(--sans);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#e0a4ad;margin-bottom:14px}
+  .foot-col a{display:block;font-family:var(--sans);font-size:.86rem;color:#e9e4d9;padding:6px 0;transition:color .15s}
+  .foot-col a:hover{color:#fff;text-decoration:underline}
+  .foot-bottom{border-top:1px solid rgba(244,241,234,.18);margin-top:14px}
+  .foot-bottom .fb{max-width:1180px;margin:0 auto;padding:18px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:var(--sans);font-size:.7rem;letter-spacing:.08em;color:#b7b1a5;text-transform:uppercase}
+
+  @media(max-width:820px){
+    .nav-links{display:none}
+    .feature-card{grid-template-columns:1fr}
+    .feature-card .count{border-left:none;border-top:1px solid rgba(244,241,234,.25)}
+    .ev-row{grid-template-columns:70px 1fr;gap:16px}
+    .ev-row .cta{grid-column:1/-1}
+    .foot-inner{grid-template-columns:1fr;gap:26px}
+  }
+</style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brandmark" href="index.html">News At <em>Noire</em></a>
+      <nav class="nav-links">
+        <a class="home" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"></path><path d="M5 10v9h5v-5h4v5h5v-9"></path></svg>Home</a>
+        <a href="coming-soon.html">News</a>
+        <a href="coming-soon.html">Politics</a>
+        <a href="literature.html">Literature</a>
+        <a href="coming-soon.html">Culture</a>
+        <a href="library.html">Library</a>
+        <a href="events.html" aria-current="page">Events</a>
+      </nav>
+      <a class="nav-cta" href="coming-soon.html">Subscribe</a>
+    </div>
+  </header>
+
+  <section class="sec-masthead">
+    <span class="kicker">Gatherings &amp; Talks</span>
+    <h1>Noire <em>Events</em></h1>
+    <div class="rule"></div>
+    <p>Conferences, editorial talks, webinars, launches and community gatherings — the public life of the journal.</p>
+  </section>
+
+  <!-- Featured event with live countdown -->
+  <div class="feature">
+    <div class="feature-card" data-cms="featured-event">
+      <div class="info">
+        <span class="type">Featured · Conference</span>
+        <h2>The featured event appears here</h2>
+        <div class="when">
+          <span>📅 Date to be announced</span>
+          <span>📍 Venue / Online</span>
+        </div>
+        <div class="actions">
+          <a class="reg" href="coming-soon.html">Register</a>
+          <a class="cal" href="coming-soon.html" id="addCal">Add to Calendar</a>
+        </div>
+      </div>
+      <div class="count">
+        <span class="lbl">Begins in</span>
+        <div class="countdown" id="countdown" data-target="">
+          <div class="unit"><b id="cd-d">—</b><small>Days</small></div>
+          <div class="unit"><b id="cd-h">—</b><small>Hrs</small></div>
+          <div class="unit"><b id="cd-m">—</b><small>Min</small></div>
+          <div class="unit"><b id="cd-s">—</b><small>Sec</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Type filter -->
+  <div class="ev-types" role="group" aria-label="Event types">
+    <button aria-pressed="true">All</button>
+    <button aria-pressed="false">Conferences</button>
+    <button aria-pressed="false">Editorial Talks</button>
+    <button aria-pressed="false">Webinars</button>
+    <button aria-pressed="false">Community</button>
+    <button aria-pressed="false">Launches</button>
+  </div>
+
+  <!-- Upcoming -->
+  <div class="section-head"><h2>Upcoming Events</h2><a href="coming-soon.html">Full Calendar →</a></div>
+  <section class="ev-list" data-cms="events">
+    <article class="ev-row">
+      <div class="date"><b>—</b><small>TBA</small></div>
+      <div class="meta"><span class="type">Editorial Talk</span><h3>Event title</h3><p>Speaker · Location — set by the editor.</p></div>
+      <div class="cta"><a href="coming-soon.html">Register</a></div>
+    </article>
+    <article class="ev-row">
+      <div class="date"><b>—</b><small>TBA</small></div>
+      <div class="meta"><span class="type">Webinar</span><h3>Event title</h3><p>Speaker · Online — set by the editor.</p></div>
+      <div class="cta"><a href="coming-soon.html">Register</a></div>
+    </article>
+    <article class="ev-row">
+      <div class="date"><b>—</b><small>TBA</small></div>
+      <div class="meta"><span class="type">Community Event</span><h3>Event title</h3><p>Host · Location — set by the editor.</p></div>
+      <div class="cta"><a href="coming-soon.html">Register</a></div>
+    </article>
+  </section>
+
+  <footer>
+    <div class="foot-inner">
+      <div class="foot-brand">
+        <div class="wm">News At <em>Noire</em></div>
+        <p>A Journal of Black Political Thought. Published independently.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Sections</h5>
+        <a href="coming-soon.html">News</a>
+        <a href="coming-soon.html">Politics</a>
+        <a href="literature.html">Literature</a>
+        <a href="coming-soon.html">History</a>
+        <a href="coming-soon.html">Culture</a>
+      </div>
+      <div class="foot-col">
+        <h5>Explore</h5>
+        <a href="library.html">Research Library</a>
+        <a href="audio.html">Audio</a>
+        <a href="events.html">Events</a>
+        <a href="newsletter.html">Noire Briefing</a>
+        <a href="search.html">Search</a>
+      </div>
+      <div class="foot-col">
+        <h5>The Publication</h5>
+        <a href="coming-soon.html">About</a>
+        <a href="coming-soon.html">Masthead</a>
+        <a href="coming-soon.html">Subscribe</a>
+        <a href="coming-soon.html">Submissions</a>
+        <a href="coming-soon.html">Contact</a>
+      </div>
+    </div>
+    <div class="foot-bottom"><div class="fb"><span>© 2026 News At Noire</span><span>Events</span></div></div>
+  </footer>
+
+  <script>
+    // Countdown: reads data-target (ISO date) set by the CMS on the featured event.
+    (function(){
+      var el = document.getElementById('countdown');
+      var target = el.getAttribute('data-target');
+      if(!target){ return; } // no date set yet — dashes remain
+      var end = new Date(target).getTime();
+      function tick(){
+        var diff = end - Date.now();
+        if(diff < 0){ diff = 0; }
+        var d = Math.floor(diff/86400000);
+        var h = Math.floor(diff%86400000/3600000);
+        var m = Math.floor(diff%3600000/60000);
+        var s = Math.floor(diff%60000/1000);
+        document.getElementById('cd-d').textContent = d;
+        document.getElementById('cd-h').textContent = ('0'+h).slice(-2);
+        document.getElementById('cd-m').textContent = ('0'+m).slice(-2);
+        document.getElementById('cd-s').textContent = ('0'+s).slice(-2);
+      }
+      tick(); setInterval(tick, 1000);
+    })();
+
+    // Event type filter (single-select)
+    document.querySelectorAll('.ev-types button').forEach(function(b){
+      b.addEventListener('click', function(){
+        document.querySelectorAll('.ev-types button').forEach(function(x){x.setAttribute('aria-pressed','false');});
+        b.setAttribute('aria-pressed','true');
+      });
+    });
+  </script>
+
+</body>
+</html>
