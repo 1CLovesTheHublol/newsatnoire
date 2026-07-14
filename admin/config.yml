@@ -10,7 +10,6 @@ public_folder: "/assets/uploads"
 
 site_url: https://www.newsatnoire.com
 display_url: https://www.newsatnoire.com
-logo_url: https://www.newsatnoire.com/assets/logo.png
 
 collections:
   - name: "essays"
