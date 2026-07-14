@@ -32,7 +32,7 @@ The Literature section strengthens the identity of 'News At Noire' as a publicat
 
 ---
 
-## Research Library (!)
+## Research Library (✓)
 
 Introducing the foundation of the 'News At Noire' Research Library.
 
