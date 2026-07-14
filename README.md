@@ -89,7 +89,7 @@ Upcoming versions will expand News At Noire into a complete editorial ecosystem 
 - Research Library
 - Audio articles
 - Events
-- AI-powered search
+- Smart search engine
 - Digital magazine system
 - Community features
 - Advanced editorial tools
