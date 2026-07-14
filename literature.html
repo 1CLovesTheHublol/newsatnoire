@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Literature — News At Noire</title>
+<style>
+  :root{
+    --cream:#F4F1EA;--cream-2:#EDE8DC;--ink:#1A1A1A;--maroon:#6E1423;--maroon-2:#8A1E2F;
+    --muted:#6b6256;--serif:Georgia,'Times New Roman',Times,serif;
+    --sans:'Helvetica Neue',Arial,Helvetica,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);color:var(--ink);font-family:var(--serif);line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit}
+
+  .topbar{position:sticky;top:0;z-index:50;background:rgba(244,241,234,.92);backdrop-filter:saturate(120%) blur(6px);border-bottom:1px solid var(--ink)}
+  .topbar-inner{max-width:1180px;margin:0 auto;padding:12px clamp(16px,3vw,24px);display:flex;flex-wrap:wrap;align-items:center;gap:10px clamp(12px,2vw,28px)}
+  .brandmark{order:1;font-family:var(--serif);font-size:clamp(1.02rem,1.4vw,1.2rem);letter-spacing:.02em;white-space:nowrap}
+  .brandmark em{font-style:italic;color:var(--maroon)}
+  .nav-links{order:3;flex-basis:100%;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(9px,1vw,14px);row-gap:8px;padding-top:11px;border-top:1px solid rgba(26,26,26,.16)}
+  .nav-links a{font-family:var(--sans);font-size:clamp(.6rem,.72vw,.68rem);letter-spacing:.13em;text-transform:uppercase;color:var(--ink);padding:4px 0;border-bottom:1px solid transparent;transition:border-color .15s,color .15s}
+  .nav-links a:hover,.nav-links a[aria-current]{color:var(--maroon);border-color:var(--maroon)}
+  .nav-links a.home{display:inline-flex;align-items:center;gap:7px}
+  .nav-links a.home svg{width:14px;height:14px;flex:none}
+  .nav-links a + a::before{content:"\2022";margin-right:clamp(9px,1vw,14px);color:var(--ink);opacity:.5;font-size:.5rem;line-height:1;vertical-align:middle}
+  .nav-cta{order:2;margin-left:auto;flex:none;position:relative;overflow:hidden;isolation:isolate;font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;background:var(--maroon);border:1px solid var(--maroon);color:var(--cream);padding:7px 16px;transition:background .15s;white-space:nowrap}
+  .nav-cta:hover{background:var(--maroon-2)}
+  .nav-cta::before{content:"";position:absolute;top:0;left:-130%;width:55%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);z-index:1}
+  .nav-cta:hover::before{animation:noire-sheen .9s ease}
+  .nav-cta::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;background-repeat:no-repeat;background-image:radial-gradient(circle,#fff 1.1px,transparent 1.6px),radial-gradient(circle,#fff 1px,transparent 1.5px),radial-gradient(circle,#fff 1.2px,transparent 1.7px),radial-gradient(circle,#fff 1px,transparent 1.5px);background-position:18% 32%,72% 58%,44% 78%,86% 24%}
+  .nav-cta:hover::after{animation:noire-sparkle 1s ease-in-out infinite}
+  @keyframes noire-sheen{from{left:-130%}to{left:160%}}
+  @keyframes noire-sparkle{0%,100%{opacity:0}50%{opacity:.95}}
+
+  .kicker{font-family:var(--sans);text-transform:uppercase;letter-spacing:.24em;font-size:.68rem;color:var(--maroon)}
+
+  /* Section masthead */
+  .sec-masthead{max-width:1180px;margin:0 auto;padding:56px 24px 26px;text-align:center;border-bottom:1px solid var(--ink)}
+  .sec-masthead .kicker{display:block;margin-bottom:16px}
+  .sec-masthead h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.6rem,7vw,4.6rem);line-height:1;letter-spacing:.01em}
+  .sec-masthead h1 em{font-style:italic;color:var(--maroon)}
+  .sec-masthead .rule{height:2px;background:var(--ink);max-width:420px;margin:20px auto 16px}
+  .sec-masthead p{font-family:var(--serif);font-style:italic;font-size:clamp(1.05rem,2.3vw,1.35rem);color:#3a352d;max-width:60ch;margin:0 auto}
+
+  /* Genre index bar */
+  .genres{max-width:1180px;margin:0 auto;padding:18px 24px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center;border-bottom:1px solid rgba(26,26,26,.2)}
+  .genres a{font-family:var(--sans);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);padding:7px 14px;border:1px solid rgba(26,26,26,.35);transition:all .12s}
+  .genres a:hover{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+
+  .section-head{max-width:1180px;margin:0 auto;padding:36px 24px 6px;display:flex;align-items:baseline;justify-content:space-between;gap:16px}
+  .section-head h2{font-size:1.15rem;font-weight:400;letter-spacing:.02em}
+  .section-head a{font-family:var(--sans);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon)}
+  .section-head a:hover{text-decoration:underline}
+
+  /* Lead literary feature */
+  .lit-lead{max-width:1180px;margin:0 auto;padding:14px 24px 10px;display:grid;grid-template-columns:1fr 1.3fr;gap:40px;align-items:center}
+  .lit-lead .art{aspect-ratio:3/4;background:radial-gradient(120% 140% at 30% 0%,#2a0a10,#4a0f1a 55%,#6E1423);border:1px solid var(--ink);position:relative;overflow:hidden}
+  .lit-lead .art .stamp{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-style:italic;color:rgba(244,241,234,.85);font-size:1.4rem;text-align:center;padding:24px}
+  .lit-lead .copy .kicker{display:block;margin-bottom:12px}
+  .lit-lead .copy h3{font-family:var(--serif);font-weight:400;font-size:clamp(1.8rem,3.6vw,2.6rem);line-height:1.12;margin-bottom:16px;text-wrap:balance}
+  .lit-lead .copy h3 a:hover{color:var(--maroon)}
+  .lit-lead .copy p{color:#3a352d;font-size:1.1rem;margin-bottom:18px;max-width:52ch}
+  .byline{font-family:var(--sans);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+  /* Two-column literary column set */
+  .lit-cols{max-width:1180px;margin:0 auto;padding:26px 24px 30px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:2px solid var(--ink)}
+  .lit-item{padding:22px 24px;border-right:1px solid rgba(26,26,26,.25)}
+  .lit-cols .lit-item:last-child{border-right:none}
+  .lit-item .kicker{display:block;margin-bottom:8px}
+  .lit-item h4{font-family:var(--serif);font-weight:400;font-size:1.3rem;line-height:1.18;margin-bottom:10px}
+  .lit-item h4 a:hover{color:var(--maroon)}
+  .lit-item p{font-size:.98rem;color:#3a352d;margin-bottom:10px}
+
+  /* Reviews band */
+  .reviews-band{background:var(--cream-2);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+  .reviews{max-width:1180px;margin:0 auto;padding:14px 24px 40px;display:grid;grid-template-columns:repeat(2,1fr);gap:34px}
+  .review{display:grid;grid-template-columns:80px 1fr;gap:18px;border-top:1px solid rgba(26,26,26,.3);padding-top:16px}
+  .review .cover{aspect-ratio:2/3;background:linear-gradient(160deg,#3a0f18,#6E1423);border:1px solid var(--ink)}
+  .review .kicker{display:block;margin-bottom:6px}
+  .review h4{font-family:var(--serif);font-weight:400;font-size:1.15rem;line-height:1.18;margin-bottom:6px}
+  .review .stars{color:var(--maroon);letter-spacing:2px;font-size:.85rem;margin-bottom:6px}
+  .review p{font-family:var(--sans);font-size:.8rem;color:var(--muted)}
+
+  /* Empty CMS-ready */
+  .cms-empty{max-width:1180px;margin:0 auto;padding:14px 24px 40px}
+  .cms-empty .frame{border:1px dashed rgba(26,26,26,.3);padding:44px 24px;text-align:center;background:rgba(255,255,255,.35)}
+  .cms-empty .frame .lead{font-family:var(--serif);font-style:italic;font-size:1.15rem;margin-bottom:8px}
+  .cms-empty .frame p{font-family:var(--sans);font-size:.82rem;letter-spacing:.04em;color:var(--muted)}
+
+  footer{background:var(--ink);color:var(--cream);margin-top:20px}
+  .foot-inner{max-width:1180px;margin:0 auto;padding:48px 24px 30px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px}
+  .foot-brand .wm{font-family:var(--serif);font-size:1.7rem}
+  .foot-brand .wm em{font-style:italic;color:#e0a4ad}
+  .foot-brand p{font-family:var(--sans);font-size:.76rem;letter-spacing:.04em;color:#c9c3b7;margin-top:12px;max-width:34ch}
+  .foot-col h5{font-family:var(--sans);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:#e0a4ad;margin-bottom:14px}
+  .foot-col a{display:block;font-family:var(--sans);font-size:.86rem;color:#e9e4d9;padding:6px 0;transition:color .15s}
+  .foot-col a:hover{color:#fff;text-decoration:underline}
+  .foot-bottom{border-top:1px solid rgba(244,241,234,.18);margin-top:14px}
+  .foot-bottom .fb{max-width:1180px;margin:0 auto;padding:18px 24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:var(--sans);font-size:.7rem;letter-spacing:.08em;color:#b7b1a5;text-transform:uppercase}
+
+  @media(max-width:820px){
+    .nav-links{display:none}
+    .lit-lead{grid-template-columns:1fr;gap:24px}
+    .lit-cols{grid-template-columns:1fr}
+    .lit-item{border-right:none;border-bottom:1px solid rgba(26,26,26,.25)}
+    .reviews{grid-template-columns:1fr}
+    .foot-inner{grid-template-columns:1fr;gap:26px}
+  }
+</style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brandmark" href="index.html">News At <em>Noire</em></a>
+      <nav class="nav-links">
+        <a class="home" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"></path><path d="M5 10v9h5v-5h4v5h5v-9"></path></svg>Home</a>
+        <a href="coming-soon.html">News</a>
+        <a href="coming-soon.html">Politics</a>
+        <a href="literature.html" aria-current="page">Literature</a>
+        <a href="coming-soon.html">History</a>
+        <a href="coming-soon.html">Culture</a>
+        <a href="coming-soon.html">Essays</a>
+        <a href="coming-soon.html">Archive</a>
+      </nav>
+      <a class="nav-cta" href="coming-soon.html">Subscribe</a>
+    </div>
+  </header>
+
+  <!-- Section masthead -->
+  <section class="sec-masthead">
+    <span class="kicker">The Literary Review</span>
+    <h1>Literature &amp; <em>Letters</em></h1>
+    <div class="rule"></div>
+    <p>Essays, philosophy, political theory and criticism — the reading life of News At Noire, in the manner of a premium literary journal.</p>
+  </section>
+
+  <!-- Genre index -->
+  <nav class="genres" aria-label="Literary genres">
+    <a href="coming-soon.html">Essays</a>
+    <a href="coming-soon.html">Philosophy</a>
+    <a href="coming-soon.html">Political Theory</a>
+    <a href="coming-soon.html">Book Reviews</a>
+    <a href="coming-soon.html">Literary Reviews</a>
+    <a href="coming-soon.html">Historical Commentary</a>
+    <a href="coming-soon.html">Editorial Analysis</a>
+  </nav>
+
+  <!-- Lead literary feature -->
+  <div class="section-head"><h2>The Featured Reading</h2><a href="coming-soon.html">All Literature →</a></div>
+  <section class="lit-lead" data-cms="lit-lead">
+    <a class="art" href="coming-soon.html"><span class="stamp">Coming Soon</span></a>
+    <div class="copy">
+      <span class="kicker">Philosophy</span>
+      <h3><a href="coming-soon.html">The featured literary essay appears here</a></h3>
+      <p>An editor selects one long-form piece — an essay, a work of political theory, or a critical reading — to anchor the section.</p>
+      <span class="byline">Full piece · Coming Soon</span>
+    </div>
+  </section>
+
+  <!-- Column set -->
+  <section class="lit-cols" data-cms="lit-columns">
+    <article class="lit-item">
+      <span class="kicker">Political Theory</span>
+      <h4><a href="coming-soon.html">Column title</a></h4>
+      <p>Short standfirst introducing a work of theory or argument.</p>
+      <span class="byline">Coming Soon</span>
+    </article>
+    <article class="lit-item">
+      <span class="kicker">Historical Commentary</span>
+      <h4><a href="coming-soon.html">Column title</a></h4>
+      <p>Short standfirst introducing a historical reading or commentary.</p>
+      <span class="byline">Coming Soon</span>
+    </article>
+    <article class="lit-item">
+      <span class="kicker">Editorial Analysis</span>
+      <h4><a href="coming-soon.html">Column title</a></h4>
+      <p>Short standfirst introducing an editorial analysis piece.</p>
+      <span class="byline">Coming Soon</span>
+    </article>
+  </section>
+
+  <!-- Reviews -->
+  <div class="reviews-band">
+    <div class="section-head"><h2>Book &amp; Literary Reviews</h2><a href="coming-soon.html">All Reviews →</a></div>
+    <section class="reviews" data-cms="lit-reviews">
+      <article class="review">
+        <div class="cover"></div>
+        <div>
+          <span class="kicker">Book Review</span>
+          <h4><a href="coming-soon.html">Title of the reviewed work</a></h4>
+          <div class="stars" aria-label="Rating">★★★★☆</div>
+          <p>Reviewer name · Coming Soon</p>
+        </div>
+      </article>
+      <article class="review">
+        <div class="cover"></div>
+        <div>
+          <span class="kicker">Literary Review</span>
+          <h4><a href="coming-soon.html">Title of the reviewed work</a></h4>
+          <div class="stars" aria-label="Rating">★★★★★</div>
+          <p>Reviewer name · Coming Soon</p>
+        </div>
+      </article>
+    </section>
+  </div>
+
+  <!-- Latest essays (CMS-ready) -->
+  <div class="section-head"><h2>Latest in Literature</h2><a href="coming-soon.html">Browse All →</a></div>
+  <section class="cms-empty" data-cms="lit-latest">
+    <div class="frame">
+      <p class="lead">Newly published literary pieces will list here.</p>
+      <p>Essays, philosophy, theory and reviews appear as editors publish them.</p>
+    </div>
+  </section>
+
+  <footer>
+    <div class="foot-inner">
+      <div class="foot-brand">
+        <div class="wm">News At <em>Noire</em></div>
+        <p>A Journal of Black Political Thought. Published independently.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Sections</h5>
+        <a href="coming-soon.html">News</a>
+        <a href="coming-soon.html">Politics</a>
+        <a href="literature.html">Literature</a>
+        <a href="coming-soon.html">History</a>
+        <a href="coming-soon.html">Culture</a>
+      </div>
+      <div class="foot-col">
+        <h5>Explore</h5>
+        <a href="library.html">Research Library</a>
+        <a href="audio.html">Audio</a>
+        <a href="events.html">Events</a>
+        <a href="newsletter.html">Noire Briefing</a>
+        <a href="search.html">Search</a>
+      </div>
+      <div class="foot-col">
+        <h5>The Publication</h5>
+        <a href="coming-soon.html">About</a>
+        <a href="coming-soon.html">Masthead</a>
+        <a href="coming-soon.html">Subscribe</a>
+        <a href="coming-soon.html">Submissions</a>
+        <a href="coming-soon.html">Contact</a>
+      </div>
+    </div>
+    <div class="foot-bottom"><div class="fb"><span>© 2026 News At Noire</span><span>Literature</span></div></div>
+  </footer>
+
+</body>
+</html>
