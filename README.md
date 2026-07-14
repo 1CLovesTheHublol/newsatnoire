@@ -175,16 +175,113 @@ The goal is expansion without losing the identity established in V1.
 
 # Future Development (!)
 
-Upcoming versions will continue expanding 'News At Noire' into a complete publication ecosystem with:
+Upcoming versions will continue expanding 'News At Noire' into a complete publication ecosystem.
 
-- Digital magazine system
-- Community platform
-- User accounts
-- Membership infrastructure
-- Intricate editorial tools
+## News At Noire V3 — Intelligence & Knowledge Expansion Update
+
+V3 will focus on transforming 'News At Noire' from a research-driven publication platform into a highly interconnected knowledge ecosystem.
+
+The update will introduce advanced systems designed to improve research, discovery, analysis, and the relationship between different areas of knowledge.
+
+Planned V3 features include:
+
+---
+
+## Research Assistance & Data Maps
+
+A highly coded and versatile research tool designed to connect information, topics, and sources based on relevance.
+
+The system will allow readers and researchers to explore relationships between:
+
+- Articles
+- Research papers
+- Historical events
+- Political movements
+- Economic trends
+- Cultural topics
+- Individuals
+- Organisations
+- Geographic regions
+
+The tool will generate interconnected data maps that visually represent how different topics relate to one another.
+
+Features will include:
+
+- Topic relationship mapping
+- Interactive knowledge graphs
+- Research pathways
+- Connected article discovery
+- Data-driven exploration
+- Source linking
+- Contextual information networks
+
+This transforms 'News At Noire' from a content archive into an evolving knowledge network.
+
+---
+
+## Digital Magazine System
+
+A new publication format designed to replicate the experience of traditional magazines digitally.
+
+Features will include:
+
+- Magazine-style editions
+- Featured covers
+- Editorial collections
+- Curated issues
+- Premium layouts
+- Interactive articles
+
+---
+
+## Advanced Editorial Tools
+
+Expanding the capabilities available to editors and contributors.
+
+Planned features:
+
 - Advanced page builder
-- Global content management systems
-- Expanded contributor networks
+- Custom article layouts
+- Enhanced publishing workflows
+- Editorial collaboration tools
+- Content organisation systems
+
+---
+
+## Community & Membership Infrastructure
+
+Creating stronger connections between readers, contributors, and the publication.
+
+Future features:
+
+- User accounts
+- Reader profiles
+- Membership systems
+- Community discussions
+- Contributor networks
+- Reader engagement tools
+
+---
+
+## Global Content Management Systems
+
+Expanding the platform into a scalable publication infrastructure.
+
+Planned improvements:
+
+- Advanced content management
+- Multi-author publishing
+- Expanded contributor systems
+- International content organisation
+- Improved editorial administration
+
+---
+
+V3 will continue the philosophy of:
+
+## Adaptation > Redesign.
+
+The goal is to evolve 'News At Noire' into a complete digital publication ecosystem while preserving its original editorial identity, minimalist design language, and magazine-inspired experience.
 
 ---
 
