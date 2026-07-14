@@ -10,19 +10,19 @@ In this update we focus on improving the organisation, presentation, and managem
 
 ## Added Features
 
-### Editorial Pages
+### Editorial Pages (1)
 
 We have the foundation for dedicated editorial content pages, allowing 'News At Noire' to expand beyond standard articles into long-form journalism, opinion pieces, and future analysis.
 
 ---
 
-### Coming Soon Landing Page
+### Coming Soon Landing Page (✓)
 
 We have also added a "Coming Soon" system for future 'News At Noire' features and platform expansions. Providing a dedicated space for upcoming sections while maintaining the current editorial experience, this also estabilishes the direction of the our platform.
 
 ---
 
-### Homepage Editorial Structure
+### Homepage Editorial Structure (✓)
 
 Great improvements concerning the homepage structure to support:
 
@@ -36,7 +36,7 @@ The existing Lead Essay and featured essays remain the central focus of the home
 
 ---
 
-### Content Organisation Improvements
+### Content Organisation Improvements (✓)
 
 Honing website structure for future scalability through:
 
@@ -47,7 +47,7 @@ Honing website structure for future scalability through:
 
 ---
 
-### Editorial Platform Foundation
+### Editorial Platform Foundation (!)
 
 Established the structural basis for future features including:
 
@@ -61,7 +61,7 @@ Established the structural basis for future features including:
 
 ---
 
-## Design Philosophy
+## Design Philosophy (✓)
 
 News At Noire V1 follows the principle of:
 
