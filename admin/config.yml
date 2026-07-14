@@ -7,7 +7,7 @@ backend:
   name: github
   repo: 1CLovesTheHublol/newsatnoire
   branch: main
-  base_url: https://divine-boat-b46a.cxml42903.workers.dev
+  base_url: https://divine-rain-b311.cxml42903.workers.dev
   auth_endpoint: auth
 
 # Where uploaded images land, and how they're referenced on the site
