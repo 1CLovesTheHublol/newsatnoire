@@ -9,7 +9,7 @@ backend:
   branch: main                       # <-- your default branch
   # OAuth broker that lets GitHub login work on GitHub Pages.
   # Free options: Netlify, or a Cloudflare Worker. Set the URL below once deployed.
-  base_url: https://storied-alpaca-62815a.netlify.app/
+  base_url: https://storied-alpaca-62815a.netlify.app
   auth_endpoint: auth
 
 # Where uploaded images land, and how they're referenced on the site
