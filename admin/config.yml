@@ -1,43 +1,32 @@
-# ============================================================
-# News At Noire — CMS configuration
-# Editors log in with GitHub. Only repo collaborators can publish.
-# ============================================================
+# News At Noire — Decap CMS config
+# Goes at: admin/config.yml in the 1CLovesTheHublol/newsatnoire repo.
+# base_url MUST be the OAuth BROKER worker (newsatnoire), NOT the site.
 
 backend:
   name: github
   repo: 1CLovesTheHublol/newsatnoire
   branch: main
-  base_url: https://divine-rain-b311.cxml42903.workers.dev
+  base_url: https://newsatnoire.cxml42903.workers.dev   # the broker worker (no trailing slash)
   auth_endpoint: auth
 
-# Where uploaded images land, and how they're referenced on the site
-media_folder: "assets/uploads"
-public_folder: "/assets/uploads"
-
-# Nice-looking site link inside the editor
 site_url: https://www.newsatnoire.com
 display_url: https://www.newsatnoire.com
-logo_url: https://www.newsatnoire.com/assets/logo.png
+
+media_folder: "img/uploads"
+public_folder: "/img/uploads"
 
 collections:
-  - name: "essays"
-    label: "Essays"
-    label_singular: "Essay"
-    folder: "content/essays"
+  - name: essays
+    label: Essays
+    label_singular: Essay
+    folder: content/essays
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    summary: "{{title}} — {{section}}"
-    sortable_fields: ['publishDate', 'title']
+    summary: "{{title}}  ·  {{date}}"
+    sort: "date:desc"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Subtitle", name: "subtitle", widget: "string", required: false }
-      - label: "Section"
-        name: "section"
-        widget: "select"
-        options: ["Essays", "Politics & Power", "History", "Culture", "Interviews", "Reviews"]
-        default: "Essays"
-      - { label: "Author", name: "author", widget: "string" }
-      - { label: "Publish Date", name: "publishDate", widget: "datetime" }
-      - { label: "Featured on homepage", name: "featured", widget: "boolean", default: false }
-      - { label: "Cover image", name: "cover", widget: "image", required: false }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { name: title,   label: Title,   widget: string }
+      - { name: date,    label: Date,    widget: datetime }
+      - { name: author,  label: Author,  widget: string, required: false }
+      - { name: summary, label: Summary, widget: markdown, required: false }
+      - { name: body,    label: Body,    widget: markdown }
