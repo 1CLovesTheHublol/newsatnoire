@@ -5,10 +5,8 @@
 
 backend:
   name: github
-  repo:  repo: 1CLovesTheHublol/newsatnoire      # <-- change to your repo, e.g. newsatnoire/site
-  branch: main                       # <-- your default branch
-  # OAuth broker that lets GitHub login work on GitHub Pages.
-  # Free options: Netlify, or a Cloudflare Worker. Set the URL below once deployed.
+  repo: 1CLovesTheHublol/newsatnoire
+  branch: main
   base_url: https://divine-boat-b46a.cxml42903.workers.dev
   auth_endpoint: auth
 
