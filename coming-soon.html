@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coming Soon — News At Noire</title>
+<style>
+  :root{
+    --cream:#F4F1EA;--ink:#1A1A1A;--maroon:#6E1423;--muted:#6b6256;
+    --serif:Georgia,'Times New Roman',Times,serif;
+    --sans:'Helvetica Neue',Arial,Helvetica,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    min-height:100vh;background:var(--cream);color:var(--ink);
+    font-family:var(--serif);display:flex;flex-direction:column;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+
+  .bar{border-bottom:1px solid var(--ink)}
+  .bar-inner{max-width:1180px;margin:0 auto;padding:12px 24px;text-align:center}
+  .bar-inner a{font-family:var(--serif);font-size:1.15rem;letter-spacing:.02em}
+  .bar-inner a em{font-style:italic;color:var(--maroon)}
+
+  main{flex:1;display:flex;align-items:center;justify-content:center;padding:40px 24px}
+  .wrap{max-width:720px;text-align:center}
+
+  .wordmark{
+    font-family:var(--serif);font-weight:400;line-height:.95;
+    font-size:clamp(2.4rem,8vw,5rem);
+  }
+  .wordmark .noire{font-style:italic;color:var(--maroon)}
+  .rule{height:2px;background:var(--ink);max-width:520px;margin:20px auto 14px}
+  .tagline{
+    font-family:var(--sans);text-transform:uppercase;color:var(--maroon);
+    letter-spacing:.4em;font-size:clamp(.58rem,1.5vw,.8rem);padding-left:.4em;
+  }
+
+  .cs-kicker{
+    font-family:var(--sans);text-transform:uppercase;letter-spacing:.32em;
+    font-size:.72rem;color:var(--muted);margin-top:54px;
+  }
+  .cs-title{
+    font-family:var(--serif);font-style:italic;font-weight:400;
+    font-size:clamp(2.6rem,9vw,5.4rem);color:var(--ink);margin-top:10px;line-height:1;
+  }
+  .cs-body{
+    font-family:var(--serif);font-size:clamp(1rem,2.2vw,1.25rem);color:#3a352d;
+    margin-top:22px;line-height:1.55;
+  }
+
+  .back{
+    display:inline-block;margin-top:34px;font-family:var(--sans);font-size:.74rem;
+    letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--ink);
+    padding:12px 22px;transition:all .15s;
+  }
+  .back:hover{background:var(--ink);color:var(--cream)}
+
+  footer{border-top:1px solid rgba(26,26,26,.2)}
+  .foot{max-width:1180px;margin:0 auto;padding:18px 24px;text-align:center;
+    font-family:var(--sans);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+</style>
+</head>
+<body>
+
+  <div class="bar">
+    <div class="bar-inner">
+      <a href="index.html">News At <em>Noire</em></a>
+    </div>
+  </div>
+
+  <main>
+    <div class="wrap">
+      <h1 class="wordmark">News At <span class="noire">Noire</span></h1>
+      <div class="rule"></div>
+      <p class="tagline">A Journal of Black Political Thought</p>
+
+      <p class="cs-kicker">This Section Is</p>
+      <h2 class="cs-title">Coming Soon</h2>
+      <p class="cs-body">We're preparing something worth the wait. This part of the journal isn't live yet — check back soon.</p>
+
+      <a class="back" href="index.html">← Back to Home</a>
+    </div>
+  </main>
+
+  <footer>
+    <div class="foot">© 2026 News At Noire · Coming Soon</div>
+  </footer>
+
+</body>
+</html>
