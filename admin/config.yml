@@ -4,7 +4,7 @@
 # ============================================================
 
 backend:
-  name: 1CLovesTheHublol
+  name: github
   repo:  1CLovesTheHublol/newsatnoire      # <-- change to your repo, e.g. newsatnoire/site
   branch: main                       # <-- your default branch
   # OAuth broker that lets GitHub login work on GitHub Pages.
