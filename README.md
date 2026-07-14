@@ -4,7 +4,7 @@
 
 The V1 update establishes the foundation of News At Noire as a scalable editorial publication platform.
 
-This update focuses on improving the organisation, presentation, and management of editorial content while preserving the existing News At Noire visual identity and homepage experience.
+In this update we focus on improving the organisation, presentation, and management of editorial content while preserving the existing 'News At Noire' visual identity and homepage experience, expontentially improving accessibility.
 
 ---
 
@@ -12,21 +12,19 @@ This update focuses on improving the organisation, presentation, and management 
 
 ### Editorial Pages
 
-Created the foundation for dedicated editorial content pages, allowing News At Noire to expand beyond standard articles into long-form journalism, opinion pieces, and future analysis.
+We have the foundation for dedicated editorial content pages, allowing 'News At Noire' to expand beyond standard articles into long-form journalism, opinion pieces, and future analysis.
 
 ---
 
 ### Coming Soon Landing Page
 
-Added a Coming Soon system for future News At Noire features and platform expansions.
-
-This provides a dedicated space for upcoming sections while maintaining the current editorial experience.
+We have also added a "Coming Soon" system for future 'News At Noire' features and platform expansions. Providing a dedicated space for upcoming sections while maintaining the current editorial experience, this also estabilishes the direction of the our platform.
 
 ---
 
 ### Homepage Editorial Structure
 
-Improved the homepage structure to support:
+Great improvements concerning the homepage structure to support:
 
 - Lead Essay presentation
 - Featured editorial content
@@ -40,7 +38,7 @@ The existing Lead Essay and featured essays remain the central focus of the home
 
 ### Content Organisation Improvements
 
-Improved website structure for future scalability through:
+Honing website structure for future scalability through:
 
 - Better category organisation
 - Editorial content separation
@@ -51,7 +49,7 @@ Improved website structure for future scalability through:
 
 ### Editorial Platform Foundation
 
-Established the groundwork for future features including:
+Established the structural basis for future features including:
 
 - Contributor profiles
 - Advanced search
@@ -67,11 +65,11 @@ Established the groundwork for future features including:
 
 News At Noire V1 follows the principle of:
 
-**Evolution, not redesign.**
+**Adaptaion > Redesign.**
 
-The existing News At Noire aesthetic remains the foundation for all future updates.
+The existing 'News At Noire' aesthetic remains the foundation for all future updates.
 
-The update focuses on expanding functionality while preserving:
+The update focuses on expanding functionality while preserving key elements:
 
 - Existing typography
 - Editorial layout
@@ -83,7 +81,7 @@ The update focuses on expanding functionality while preserving:
 
 ## Future Development
 
-Upcoming versions will expand News At Noire into a complete editorial ecosystem with:
+Upcoming versions will expand 'News At Noire' into a complete editorial ecosystem with:
 
 - Literature section
 - Research Library
