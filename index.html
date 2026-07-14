@@ -27,6 +27,28 @@
   }
   a{color:inherit;text-decoration:none}
 
+  /* ---- Breaking news banner ---- */
+  .breaking{
+    background:var(--maroon);color:var(--cream);
+    font-family:var(--sans);border-bottom:1px solid var(--ink);
+  }
+  .breaking[hidden]{display:none}
+  .breaking-inner{
+    max-width:1180px;margin:0 auto;padding:8px 24px;
+    display:flex;align-items:center;gap:14px;
+    font-size:.74rem;letter-spacing:.06em;
+  }
+  .breaking .tag{
+    text-transform:uppercase;letter-spacing:.2em;font-size:.62rem;font-weight:700;
+    border:1px solid rgba(244,241,234,.6);padding:3px 8px;white-space:nowrap;
+  }
+  .breaking .msg{flex:1;opacity:.92}
+  .breaking button{
+    background:none;border:none;color:var(--cream);cursor:pointer;
+    font-size:1rem;line-height:1;opacity:.7;padding:2px 4px;
+  }
+  .breaking button:hover{opacity:1}
+
   /* ---- Top nav ---- */
   .topbar{
     position:sticky;top:0;z-index:50;
@@ -40,18 +62,39 @@
   }
   .brandmark{font-family:var(--serif);font-size:1.15rem;letter-spacing:.02em;white-space:nowrap}
   .brandmark em{font-style:italic;color:var(--maroon)}
-  .nav-links{display:flex;flex-wrap:wrap;gap:22px}
+  .nav-links{display:flex;flex-wrap:wrap;align-items:center;gap:15px}
   .nav-links a{
-    font-family:var(--sans);font-size:.72rem;letter-spacing:.18em;
+    font-family:var(--sans);font-size:.68rem;letter-spacing:.16em;
     text-transform:uppercase;color:var(--ink);padding:4px 0;
     border-bottom:1px solid transparent;transition:border-color .15s,color .15s;
   }
   .nav-links a:hover{color:var(--maroon);border-color:var(--maroon)}
+  .nav-links a.home{display:inline-flex;align-items:center;gap:7px}
+  .nav-links a.home svg{width:14px;height:14px;flex:none}
+  .nav-links a + a::before{content:"\2022";margin-right:15px;color:var(--ink);opacity:.5;font-size:.5rem;line-height:1;vertical-align:middle}
+  /* ---- Expanding search ---- */
+  .nav-search{display:inline-flex;align-items:center;gap:8px;margin:0 10px 0 6px;border:1px solid var(--ink);border-radius:999px;padding:0 4px 0 14px;height:34px;overflow:hidden;transition:box-shadow .18s ease;background:transparent}
+  .nav-search:focus-within{box-shadow:0 0 0 3px rgba(110,20,35,.16)}
+  .nav-search svg{width:14px;height:14px;flex:none;color:var(--ink)}
+  .nav-search input{width:0;opacity:0;border:none;background:none;outline:none;padding:0;font-family:var(--sans);font-size:.74rem;letter-spacing:.06em;color:var(--ink);transition:width .28s ease,opacity .2s ease;min-width:0}
+  .nav-search input::placeholder{color:var(--muted);text-transform:uppercase;letter-spacing:.14em;font-size:.66rem}
+  .nav-search.open,.nav-search:focus-within{width:auto;background:var(--cream)}
+  .nav-search.open input,.nav-search:focus-within input{width:150px;opacity:1;padding:0 4px}
+  .nav-search .go{display:none;align-items:center;justify-content:center;width:26px;height:26px;border-radius:999px;flex:none;background:none;border:none;cursor:pointer;color:var(--maroon)}
+  .nav-search.open .go,.nav-search:focus-within .go{display:inline-flex;background:var(--maroon);color:var(--cream)}
+  .nav-search .toggle{display:inline-flex;align-items:center;background:none;border:none;cursor:pointer;padding:6px 2px}
   .nav-cta{
+    position:relative;overflow:hidden;isolation:isolate;
     font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;
-    border:1px solid var(--ink);padding:7px 14px;transition:all .15s;white-space:nowrap;
+    background:var(--maroon);border:1px solid var(--maroon);color:var(--cream);padding:7px 16px;transition:background .15s;white-space:nowrap;
   }
-  .nav-cta:hover{background:var(--ink);color:var(--cream)}
+  .nav-cta:hover{background:var(--maroon-2)}
+  .nav-cta::before{content:"";position:absolute;top:0;left:-130%;width:55%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);z-index:1}
+  .nav-cta:hover::before{animation:noire-sheen .9s ease}
+  .nav-cta::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;background-repeat:no-repeat;background-image:radial-gradient(circle,#fff 1.1px,transparent 1.6px),radial-gradient(circle,#fff 1px,transparent 1.5px),radial-gradient(circle,#fff 1.2px,transparent 1.7px),radial-gradient(circle,#fff 1px,transparent 1.5px);background-position:18% 32%,72% 58%,44% 78%,86% 24%}
+  .nav-cta:hover::after{animation:noire-sparkle 1s ease-in-out infinite}
+  @keyframes noire-sheen{from{left:-130%}to{left:160%}}
+  @keyframes noire-sparkle{0%,100%{opacity:0}50%{opacity:.95}}
 
   /* ---- Masthead ---- */
   .masthead{max-width:1180px;margin:0 auto;padding:54px 24px 30px;text-align:center}
@@ -119,6 +162,39 @@
   .story h4 a:hover{color:var(--maroon)}
   .story p{font-size:.95rem;color:#3a352d;margin-bottom:12px}
 
+  /* ---- Trending tabs ---- */
+  .trend-tabs{
+    max-width:1180px;margin:0 auto;padding:2px 24px 0;
+    display:flex;flex-wrap:wrap;gap:22px;border-bottom:1px solid rgba(26,26,26,.2);
+  }
+  .trend-tabs button{
+    background:none;border:none;cursor:pointer;font-family:var(--sans);
+    font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+    padding:10px 0;border-bottom:2px solid transparent;transition:color .15s,border-color .15s;
+  }
+  .trend-tabs button[aria-selected="true"]{color:var(--maroon);border-color:var(--maroon)}
+
+  /* ---- Empty CMS-ready state ---- */
+  .cms-empty{
+    max-width:1180px;margin:0 auto;padding:14px 24px 40px;
+  }
+  .cms-empty .frame{
+    border:1px dashed rgba(26,26,26,.3);padding:38px 24px;text-align:center;
+    background:rgba(255,255,255,.35);
+  }
+  .cms-empty .frame p{
+    font-family:var(--sans);font-size:.82rem;letter-spacing:.04em;color:var(--muted);
+  }
+  .cms-empty .frame .lead{font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--ink);margin-bottom:8px}
+
+  /* ---- Popular tags ---- */
+  .tags-wrap{max-width:1180px;margin:0 auto;padding:14px 24px 40px;display:flex;flex-wrap:wrap;gap:12px}
+  .tags-wrap .tag{
+    font-family:var(--sans);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+    border:1px solid var(--ink);padding:8px 14px;color:var(--ink);transition:all .15s;
+  }
+  .tags-wrap .tag:hover{background:var(--ink);color:var(--cream)}
+
   /* ---- Sections grid ---- */
   .sections-band{background:var(--cream-2);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
   .sections-grid{
@@ -137,6 +213,29 @@
   .sec-card .go{font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);margin-top:14px;display:inline-block}
   .sec-card:hover .go{text-decoration:underline}
 
+  /* ---- Newsletter ---- */
+  .newsletter{background:var(--ink);color:var(--cream)}
+  .newsletter-inner{max-width:760px;margin:0 auto;padding:56px 24px;text-align:center}
+  .newsletter .kicker{color:#e0a4ad;display:block;margin-bottom:16px}
+  .newsletter h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:12px}
+  .newsletter p{font-family:var(--sans);font-size:.9rem;color:#c9c3b7;max-width:46ch;margin:0 auto 24px}
+  .newsletter form{display:flex;gap:10px;max-width:440px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+  .newsletter input{
+    flex:1;min-width:220px;font-family:var(--sans);font-size:.9rem;padding:12px 14px;
+    background:var(--cream);border:1px solid var(--cream);color:var(--ink);
+  }
+  .newsletter button{
+    font-family:var(--sans);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;
+    padding:12px 22px;background:var(--maroon);border:1px solid var(--maroon);color:var(--cream);cursor:pointer;transition:background .15s;
+  }
+  .newsletter button:hover{background:var(--maroon-2)}
+
+  /* ---- Quote of the week ---- */
+  .quote{max-width:900px;margin:0 auto;padding:64px 24px;text-align:center}
+  .quote .kicker{display:block;margin-bottom:20px}
+  .quote blockquote{font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,3vw,1.9rem);line-height:1.45;color:var(--ink)}
+  .quote cite{display:block;font-family:var(--sans);font-style:normal;text-transform:uppercase;letter-spacing:.16em;font-size:.72rem;color:var(--muted);margin-top:20px}
+
   /* ---- About the publication ---- */
   .about{max-width:900px;margin:0 auto;padding:60px 24px;text-align:center}
   .about .kicker{display:block;margin-bottom:18px}
@@ -150,7 +249,7 @@
   /* ---- Footer ---- */
   footer{background:var(--ink);color:var(--cream)}
   .foot-inner{max-width:1180px;margin:0 auto;padding:48px 24px 30px;
-    display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px}
+    display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px}
   .foot-brand .wm{font-family:var(--serif);font-size:1.7rem}
   .foot-brand .wm em{font-style:italic;color:#e0a4ad}
   .foot-brand p{font-family:var(--sans);font-size:.76rem;letter-spacing:.04em;color:#c9c3b7;margin-top:12px;max-width:34ch}
@@ -174,17 +273,38 @@
 </head>
 <body>
 
+  <!-- ================= BREAKING NEWS BANNER (CMS-toggleable) ================= -->
+  <div class="breaking" id="breaking" hidden>
+    <div class="breaking-inner">
+      <span class="tag">Breaking</span>
+      <span class="msg" data-cms="breaking-message">Breaking-news headline appears here when an editor publishes one.</span>
+      <button type="button" aria-label="Dismiss" onclick="document.getElementById('breaking').hidden=true;localStorage.setItem('noire-breaking-dismissed','1')">×</button>
+    </div>
+  </div>
+
   <!-- ================= TOP NAV ================= -->
   <header class="topbar">
     <div class="topbar-inner">
       <a class="brandmark" href="index.html">News At <em>Noire</em></a>
       <nav class="nav-links">
-        <a href="coming-soon.html">Essays</a>
+        <a class="home" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"></path><path d="M5 10v9h5v-5h4v5h5v-9"></path></svg>Home</a>
+        <a href="coming-soon.html">News</a>
         <a href="coming-soon.html">Politics</a>
+        <a href="coming-soon.html">Literature</a>
         <a href="coming-soon.html">History</a>
         <a href="coming-soon.html">Culture</a>
-        <a href="coming-soon.html">Interviews</a>
-        <a href="coming-soon.html">Reviews</a>
+        <a href="coming-soon.html">Economics</a>
+        <a href="coming-soon.html">Essays</a>
+        <a href="coming-soon.html">Archive</a>
+        <form class="nav-search" id="navSearch" role="search" action="search.html" method="get">
+          <button type="button" class="toggle" id="searchToggle" aria-label="Open search" aria-expanded="false" aria-controls="searchField">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg>
+          </button>
+          <input type="search" id="searchField" name="q" placeholder="Search" aria-label="Search the journal" autocomplete="off">
+          <button type="submit" class="go" aria-label="Submit search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg>
+          </button>
+        </form>
       </nav>
       <a class="nav-cta" href="coming-soon.html">Subscribe</a>
     </div>
@@ -200,12 +320,12 @@
 
   <div class="divider"></div>
 
-  <!-- ================= FEATURED ================= -->
+  <!-- ================= HERO / LEAD ESSAY (Editor's Choice) ================= -->
   <div class="section-head">
-    <h2>From the Editors</h2>
+    <h2>Editor's Choice</h2>
     <a href="coming-soon.html">All Essays →</a>
   </div>
-  <section class="featured">
+  <section class="featured" data-cms="hero">
     <a class="lead-art" href="coming-soon.html" aria-label="Featured essay — coming soon">
       <span class="stamp">Coming Soon<small>Featured Essay</small></span>
     </a>
@@ -217,12 +337,46 @@
     </div>
   </section>
 
-  <!-- ================= STORY LIST ================= -->
-  <section class="stories">
+  <!-- ================= LATEST NEWS (CMS-ready) ================= -->
+  <div class="section-head">
+    <h2>Latest News</h2>
+    <a href="coming-soon.html">All News →</a>
+  </div>
+  <section class="cms-empty" data-cms="latest-news">
+    <div class="frame">
+      <p class="lead">Latest news will appear here.</p>
+      <p>This section populates automatically as editors publish articles.</p>
+    </div>
+  </section>
+
+  <!-- ================= TRENDING ARTICLES (CMS-ready) ================= -->
+  <div class="section-head">
+    <h2>Trending Articles</h2>
+    <a href="coming-soon.html">See More →</a>
+  </div>
+  <div class="trend-tabs" role="tablist">
+    <button role="tab" aria-selected="true">Trending Today</button>
+    <button role="tab" aria-selected="false">This Week</button>
+    <button role="tab" aria-selected="false">Most Discussed</button>
+    <button role="tab" aria-selected="false">Recently Updated</button>
+  </div>
+  <section class="cms-empty" data-cms="trending">
+    <div class="frame">
+      <p class="lead">Trending pieces will surface here.</p>
+      <p>Ranked automatically by views, reading completion, shares and recent activity.</p>
+    </div>
+  </section>
+
+  <!-- ================= FEATURED ESSAYS ================= -->
+  <div class="section-head">
+    <h2>Featured Essays</h2>
+    <a href="coming-soon.html">All Essays →</a>
+  </div>
+  <section class="stories" data-cms="featured-essays">
     <article class="story">
       <span class="kicker">Politics</span>
       <h4><a href="coming-soon.html">The Ballot and the Bloc</a></h4>
-      <p>How coalition politics is being rewritten for a new generation.</p>
+      <p>The implications of coalition politics across the colour line.</p>
       <span class="byline">Coming Soon</span>
     </article>
     <article class="story">
@@ -239,10 +393,22 @@
     </article>
   </section>
 
-  <!-- ================= SECTIONS ================= -->
+  <!-- ================= LATEST ESSAYS (CMS-ready) ================= -->
+  <div class="section-head">
+    <h2>Latest Essays</h2>
+    <a href="coming-soon.html">Browse All →</a>
+  </div>
+  <section class="cms-empty" data-cms="latest-essays">
+    <div class="frame">
+      <p class="lead">Newly published essays will list here.</p>
+      <p>The most recent long-form pieces appear first as they go live.</p>
+    </div>
+  </section>
+
+  <!-- ================= SECTIONS / CATEGORIES ================= -->
   <div class="sections-band">
     <div class="section-head">
-      <h2>Sections</h2>
+      <h2>Categories</h2>
       <a href="coming-soon.html">Browse the Archive →</a>
     </div>
     <div class="sections-grid">
@@ -264,7 +430,7 @@
       </a>
       <a class="sec-card" href="coming-soon.html">
         <span class="num">05</span><h3>Interviews</h3>
-        <p>Conversations with thinkers and makers.</p><span class="go">Enter →</span>
+        <p>Conversations with the academia and intelligentsia.</p><span class="go">Enter →</span>
       </a>
       <a class="sec-card" href="coming-soon.html">
         <span class="num">06</span><h3>Reviews</h3>
@@ -272,6 +438,42 @@
       </a>
     </div>
   </div>
+
+  <!-- ================= POPULAR TAGS (CMS-ready) ================= -->
+  <div class="section-head">
+    <h2>Popular Tags</h2>
+    <a href="coming-soon.html">All Tags →</a>
+  </div>
+  <section class="tags-wrap" data-cms="popular-tags">
+    <a class="tag" href="coming-soon.html">Abolition</a>
+    <a class="tag" href="coming-soon.html">Democracy</a>
+    <a class="tag" href="coming-soon.html">Reconstruction</a>
+    <a class="tag" href="coming-soon.html">Diaspora</a>
+    <a class="tag" href="coming-soon.html">Liberation</a>
+    <a class="tag" href="coming-soon.html">Memory</a>
+    <a class="tag" href="coming-soon.html">Power</a>
+    <a class="tag" href="coming-soon.html">Criticism</a>
+  </section>
+
+  <!-- ================= QUOTE OF THE WEEK (CMS-ready) ================= -->
+  <section class="quote" data-cms="quote-of-week">
+    <span class="kicker">Quote of the Week</span>
+    <blockquote>The week's featured quotation will appear here once an editor selects one.</blockquote>
+    <cite>— Attribution</cite>
+  </section>
+
+  <!-- ================= NEWSLETTER ================= -->
+  <section class="newsletter">
+    <div class="newsletter-inner">
+      <span class="kicker">The Noire Dispatch</span>
+      <h2>Essays and history, delivered.</h2>
+      <p>Join the mailing list for new essays, interviews, and criticism from News At Noire.</p>
+      <form onsubmit="event.preventDefault();this.reset();this.querySelector('button').textContent='Thank you';">
+        <input type="email" placeholder="your@email.com" aria-label="Email address" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
 
   <!-- ================= ABOUT THE PUBLICATION ================= -->
   <section class="about">
@@ -289,12 +491,18 @@
       </div>
       <div class="foot-col">
         <h5>Sections</h5>
-        <a href="coming-soon.html">Essays</a>
-        <a href="coming-soon.html">Politics &amp; Power</a>
+        <a href="coming-soon.html">News</a>
+        <a href="coming-soon.html">Politics</a>
         <a href="coming-soon.html">History</a>
         <a href="coming-soon.html">Culture</a>
-        <a href="coming-soon.html">Interviews</a>
-        <a href="coming-soon.html">Reviews</a>
+        <a href="coming-soon.html">Economics</a>
+      </div>
+      <div class="foot-col">
+        <h5>Read</h5>
+        <a href="coming-soon.html">Essays</a>
+        <a href="coming-soon.html">Literature</a>
+        <a href="coming-soon.html">Archive</a>
+        <a href="coming-soon.html">Search</a>
       </div>
       <div class="foot-col">
         <h5>The Publication</h5>
@@ -312,6 +520,45 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    // Expanding search: click icon to reveal field, Esc to close.
+    (function(){
+      var form = document.getElementById('navSearch');
+      var toggle = document.getElementById('searchToggle');
+      var field = document.getElementById('searchField');
+      toggle.addEventListener('click', function(){
+        var open = form.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', String(open));
+        if(open){ field.focus(); }
+      });
+      field.addEventListener('keydown', function(e){
+        if(e.key === 'Escape'){ form.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); field.blur(); }
+      });
+      field.addEventListener('blur', function(){
+        if(!field.value){ form.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); }
+      });
+    })();
+  </script>
+
+  <script>
+    // Breaking-news banner shows only when CMS sets a message and reader hasn't dismissed it.
+    (function(){
+      var el = document.getElementById('breaking');
+      var msg = el.querySelector('[data-cms="breaking-message"]').textContent.trim();
+      var placeholder = msg.indexOf('appears here') !== -1;
+      var dismissed = localStorage.getItem('noire-breaking-dismissed') === '1';
+      if (!placeholder && !dismissed) el.hidden = false;
+    })();
+
+    // Trending tabs (front-end selection; CMS supplies the content per tab).
+    document.querySelectorAll('.trend-tabs button').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        document.querySelectorAll('.trend-tabs button').forEach(function(b){b.setAttribute('aria-selected','false');});
+        btn.setAttribute('aria-selected','true');
+      });
+    });
+  </script>
 
 </body>
 </html>
