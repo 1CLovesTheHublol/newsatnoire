@@ -30,3 +30,13 @@ collections:
       - { name: author,  label: Author,  widget: string, required: false }
       - { name: summary, label: Summary, widget: text,   required: false }
       - { name: body,    label: Body,    widget: markdown }
+
+  - name: library
+    label: Research Library
+    files:
+      - name: closed-exit-narration
+        label: "The Closed Exit — Narration"
+        file: content/closed-exit-audio.json
+        fields:
+          - { name: audio, label: "Narration (MP3)", widget: file, required: false, hint: "Upload the MP3. It plays on closed-exit.html with read-along highlighting." }
+          - { name: sync, label: "Sync pins", widget: text, required: false, default: "[]", hint: "Optional. Open closed-exit.html?editor, use Sync, click Copy pins, and paste here." }

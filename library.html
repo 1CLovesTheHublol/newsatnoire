@@ -4,10 +4,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Research Library — News At Noire</title>
+<meta name="description" content="The News At Noire Research Library: papers, historical documents, white papers and curated reading lists.">
+<link rel="canonical" href="https://www.newsatnoire.com/library.html">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="News At Noire">
+<meta property="og:title" content="Research Library — News At Noire">
+<meta property="og:description" content="The News At Noire Research Library: papers, historical documents, white papers and curated reading lists.">
+<meta property="og:url" content="https://www.newsatnoire.com/library.html">
+<meta property="og:image" content="https://www.newsatnoire.com/news-at-noire-og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Research Library — News At Noire">
+<meta name="twitter:description" content="The News At Noire Research Library: papers, historical documents, white papers and curated reading lists.">
+<meta name="twitter:image" content="https://www.newsatnoire.com/news-at-noire-og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/noire-shell.css">
 <style>
   :root{
     --cream:#F4F1EA;--cream-2:#EDE8DC;--ink:#1A1A1A;--maroon:#6E1423;--maroon-2:#8A1E2F;
-    --muted:#6b6256;--serif:Georgia,'Times New Roman',Times,serif;
+    --muted:#6b6256;--serif:'Source Serif 4',Georgia,'Times New Roman',serif;
     --sans:'Helvetica Neue',Arial,Helvetica,sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -107,21 +124,8 @@
 </head>
 <body>
 
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brandmark" href="index.html">News At <em>Noire</em></a>
-      <nav class="nav-links">
-        <a class="home" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"></path><path d="M5 10v9h5v-5h4v5h5v-9"></path></svg>Home</a>
-        <a href="coming-soon.html">News</a>
-        <a href="coming-soon.html">Politics</a>
-        <a href="literature.html">Literature</a>
-        <a href="coming-soon.html">History</a>
-        <a href="coming-soon.html">Culture</a>
-        <a href="library.html" aria-current="page">Library</a>
-      </nav>
-      <a class="nav-cta" href="coming-soon.html">Subscribe</a>
-    </div>
-  </header>
+  <div data-nn-header></div>
+  <script src="assets/noire-shell.js"></script>
 
   <section class="sec-masthead">
     <span class="kicker">The Archive</span>
@@ -153,33 +157,13 @@
   <!-- Library grid (CMS-ready item template ×3) -->
   <section class="lib-grid" data-cms="library-items">
     <article class="doc">
-      <div class="cover"><span class="pages">PDF · — pp.</span><span class="badge">Research Paper</span></div>
+      <a class="cover" href="closed-exit.html"><span class="pages">PDF · 28 pp.</span><span class="badge">Monograph</span></a>
       <div class="body">
-        <h3>Document title</h3>
-        <div class="author">Author name</div>
-        <p>A short description of the paper or document goes here, set by the editor on upload.</p>
-        <div class="tags"><span>Tag</span><span>Tag</span></div>
-        <div class="actions"><a class="preview" href="coming-soon.html">Preview</a><a class="download" href="coming-soon.html">Download</a></div>
-      </div>
-    </article>
-    <article class="doc">
-      <div class="cover"><span class="pages">PDF · — pp.</span><span class="badge">Historical Document</span></div>
-      <div class="body">
-        <h3>Document title</h3>
-        <div class="author">Author name</div>
-        <p>A short description of the paper or document goes here, set by the editor on upload.</p>
-        <div class="tags"><span>Tag</span><span>Tag</span></div>
-        <div class="actions"><a class="preview" href="coming-soon.html">Preview</a><a class="download" href="coming-soon.html">Download</a></div>
-      </div>
-    </article>
-    <article class="doc">
-      <div class="cover"><span class="pages">PDF · — pp.</span><span class="badge">White Paper</span></div>
-      <div class="body">
-        <h3>Document title</h3>
-        <div class="author">Author name</div>
-        <p>A short description of the paper or document goes here, set by the editor on upload.</p>
-        <div class="tags"><span>Tag</span><span>Tag</span></div>
-        <div class="actions"><a class="preview" href="coming-soon.html">Preview</a><a class="download" href="coming-soon.html">Download</a></div>
+        <h3><a href="closed-exit.html">The Closed Exit: Racialisation, Emancipation, and the Making of Anti-Blackness</a></h3>
+        <div class="author">1C, Bantu &amp; Rell · 2026</div>
+        <p>Chapters I–III. Hereditary subordination with and without a way out, from Rome and the Malagasy highlands to Genesis 9, Timbuktu and Virginia. Read online with narration, or download the PDF.</p>
+        <div class="tags"><span>History</span><span>Slavery</span><span>Race</span></div>
+        <div class="actions"><a class="preview" href="closed-exit.html">Read · Listen</a><a class="download" href="assets/the-closed-exit.pdf" download="The Closed Exit.pdf">Download</a></div>
       </div>
     </article>
   </section>
@@ -194,39 +178,7 @@
     </section>
   </div>
 
-  <footer>
-    <div class="foot-inner">
-      <div class="foot-brand">
-        <div class="wm">News At <em>Noire</em></div>
-        <p>A Journal of Black Political Thought. Published independently.</p>
-      </div>
-      <div class="foot-col">
-        <h5>Sections</h5>
-        <a href="coming-soon.html">News</a>
-        <a href="coming-soon.html">Politics</a>
-        <a href="literature.html">Literature</a>
-        <a href="coming-soon.html">History</a>
-        <a href="coming-soon.html">Culture</a>
-      </div>
-      <div class="foot-col">
-        <h5>Explore</h5>
-        <a href="library.html">Research Library</a>
-        <a href="audio.html">Audio</a>
-        <a href="events.html">Events</a>
-        <a href="newsletter.html">Noire Briefing</a>
-        <a href="search.html">Search</a>
-      </div>
-      <div class="foot-col">
-        <h5>The Publication</h5>
-        <a href="coming-soon.html">About</a>
-        <a href="coming-soon.html">Masthead</a>
-        <a href="coming-soon.html">Subscribe</a>
-        <a href="coming-soon.html">Submissions</a>
-        <a href="coming-soon.html">Contact</a>
-      </div>
-    </div>
-    <div class="foot-bottom"><div class="fb"><span>© 2026 News At Noire</span><span>Research Library</span></div></div>
-  </footer>
+  <div data-nn-footer></div>
 
   <script>
     // Type filter buttons (single-select; CMS supplies filtered items)

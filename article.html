@@ -4,10 +4,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Article Layout — News At Noire</title>
+<meta name="description" content="The News At Noire article layout: how essays and long-form pieces are structured, with imagery, audio, data blocks and related reading.">
+<link rel="canonical" href="https://www.newsatnoire.com/article.html">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="News At Noire">
+<meta property="og:title" content="Article Layout — News At Noire">
+<meta property="og:description" content="The News At Noire article layout: how essays and long-form pieces are structured, with imagery, audio, data blocks and related reading.">
+<meta property="og:url" content="https://www.newsatnoire.com/article.html">
+<meta property="og:image" content="https://www.newsatnoire.com/news-at-noire-og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Article Layout — News At Noire">
+<meta name="twitter:description" content="The News At Noire article layout: how essays and long-form pieces are structured, with imagery, audio, data blocks and related reading.">
+<meta name="twitter:image" content="https://www.newsatnoire.com/news-at-noire-og.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/noire-shell.css">
 <style>
   :root{
     --cream:#F4F1EA;--cream-2:#EDE8DC;--ink:#1A1A1A;--maroon:#6E1423;--maroon-2:#8A1E2F;
-    --muted:#6b6256;--serif:Georgia,'Times New Roman',Times,serif;
+    --muted:#6b6256;--serif:'Source Serif 4',Georgia,'Times New Roman',serif;
     --sans:'Helvetica Neue',Arial,Helvetica,sans-serif;
   }
   *{margin:0;padding:0;box-sizing:border-box}
@@ -156,30 +173,15 @@
   <div class="progress" id="progress"></div>
 
   <!-- Top nav -->
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brandmark" href="index.html">News At <em>Noire</em></a>
-      <nav class="nav-links">
-        <a class="home" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"></path><path d="M5 10v9h5v-5h4v5h5v-9"></path></svg>Home</a>
-        <a href="coming-soon.html">News</a>
-        <a href="coming-soon.html">Politics</a>
-        <a href="literature.html">Literature</a>
-        <a href="coming-soon.html">History</a>
-        <a href="coming-soon.html">Culture</a>
-        <a href="coming-soon.html">Essays</a>
-        <a href="coming-soon.html">Archive</a>
-        <a class="nav-search" href="search.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg>Search</a>
-      </nav>
-      <a class="nav-cta" href="coming-soon.html">Subscribe</a>
-    </div>
-  </header>
+  <div data-nn-header></div>
+  <script src="assets/noire-shell.js"></script>
 
   <!-- Article header -->
   <article>
     <div class="article">
       <span class="kicker" data-cms="category">Template</span>
       <h1 data-cms="title">Article Layout</h1>
-      <p class="subtitle" data-cms="subtitle">The general framework published articles and essays tend to cornform to — headings, imagery, audio, data blocks, sharing and related pieces, all in our unique style.</p>
+      <p class="subtitle" data-cms="subtitle">The general framework published articles and essays tend to conform to — headings, imagery, audio, data blocks, sharing and related pieces, all in our unique style.</p>
       <div class="meta">
         <span class="author" data-cms="author">By The Editors</span>
         <span class="dot">·</span>
@@ -310,7 +312,7 @@
     </div>
   </section>
 
-  <footer><div class="foot">© 2026 News At Noire · A Journal of Black Political Thought</div></footer>
+  <div data-nn-footer></div>
 
   <script>
     // ---- Reading progress bar ----
