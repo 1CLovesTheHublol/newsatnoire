@@ -1,4 +1,4 @@
-// News At Noire — Cloudflare Worker "noire-oauth"
+// News At Noire — Cloudflare Worker "newsatnoire"
 // 1) GitHub OAuth broker for Decap CMS (/auth, /callback)
 // 2) Writers' Desk: invite-only essay publishing by email (/writer/*)
 // 3) Public essay API for the site (/essays, /essay)

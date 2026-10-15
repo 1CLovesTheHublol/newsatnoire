@@ -2,7 +2,7 @@
 
 Invite-only essay writing at **newsatnoire.com/write.html**. Writers sign in with a 6-digit code sent to their email. Only addresses on your list can get a code, and writers don't need GitHub accounts. Published essays appear at **/essays.html**, on the front page under "Latest Essays", and each one has its own page at **/essay.html?e=…**.
 
-Everything runs on your existing Cloudflare Worker (**noire-oauth**). The CMS login at /admin keeps working as before.
+Everything runs on your existing Cloudflare Worker (**newsatnoire**). The CMS login at /admin keeps working as before.
 
 ---
 
@@ -22,7 +22,7 @@ github.com → Settings → Developer settings → **Fine-grained tokens → Gen
 Cloudflare dash → **Storage & Databases → KV → Create namespace** → name it `noire-writer`.
 
 ## 4. Configure the worker
-Cloudflare dash → Workers & Pages → **noire-oauth**.
+Cloudflare dash → Workers & Pages → **newsatnoire**.
 
 **Settings → Bindings → Add → KV namespace**
 - Variable name: `WRITER_KV` → namespace: `noire-writer`
