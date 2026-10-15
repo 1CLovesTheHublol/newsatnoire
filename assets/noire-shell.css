@@ -62,3 +62,9 @@ body.nn-lock{overflow:hidden}
 .nn-footer .nn-bottom{border-top:1px solid rgba(244,241,234,.18)}
 .nn-footer .nn-bottom .nn-wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding-top:16px;padding-bottom:16px;font-family:var(--nn-sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#b7b1a5}
 @media(max-width:820px){.nn-footer .nn-cols{grid-template-columns:1fr 1fr;gap:26px}.nn-footer .nn-cols>div:first-child{grid-column:1/-1}}
+
+.nn-social{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.nn-social a{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 14px;border:1px solid rgba(244,241,234,.35);color:#e9e4d9!important;font-family:var(--nn-sans);font-size:11px;letter-spacing:.14em;text-transform:uppercase;transition:border-color .15s,background .15s}
+.nn-social a:hover{border-color:var(--nn-cream);background:rgba(244,241,234,.06);color:#fff!important}
+.nn-social svg{width:16px;height:16px;flex:none}
+.nn-menu .nn-social{margin:8px 18px 0}
