@@ -57,6 +57,11 @@
   /* Hero subscribe */
   .brief-hero{background:var(--ink);color:var(--cream);border-bottom:1px solid var(--ink)}
   .brief-hero .inner{max-width:760px;margin:0 auto;padding:64px 24px 60px;text-align:center}
+  .brief-hero .mascot{display:block;width:150px;height:150px;margin:-20px auto 10px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.45));animation:nn-bob 3.6s ease-in-out infinite;transform-origin:50% 90%;cursor:pointer}
+  .brief-hero .mascot:hover{animation:nn-salute .7s ease-in-out}
+  @keyframes nn-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  @keyframes nn-salute{0%,100%{transform:rotate(0)}25%{transform:rotate(-6deg) scale(1.04)}60%{transform:rotate(4deg) scale(1.04)}}
+  @media (prefers-reduced-motion:reduce){.brief-hero .mascot{animation:none}}
   .brief-hero .kicker{color:#e0a4ad;display:block;margin-bottom:18px}
   .brief-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,6vw,4rem);line-height:1.02;margin-bottom:16px}
   .brief-hero h1 em{font-style:italic;color:#e0a4ad}
@@ -118,6 +123,7 @@
   <!-- Hero subscribe -->
   <section class="brief-hero">
     <div class="inner">
+      <img class="mascot" src="assets/noire-mascot.png" alt="News At Noire mascot saluting" width="150" height="150">
       <span class="kicker">The Newsletter</span>
       <h1>The Noire <em>Briefing</em></h1>
       <p>Essays, history and criticism from News At Noire — delivered as an editorial digest. Choose your cadence below.</p>

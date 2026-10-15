@@ -75,7 +75,7 @@ body.nn-lock{overflow:hidden}
   transition:background-size .38s cubic-bezier(.7,0,.2,1),color .3s ease,transform .18s ease,box-shadow .25s ease,letter-spacing .3s ease}
 .nn-cta::after,.dispatch form button::after,.brief-hero .brief-form button::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;
   background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);pointer-events:none}
-.nn-cta:hover,.dispatch form button:hover,.brief-hero .brief-form button:hover{background-size:100% 100%;background-color:var(--nn-maroon);color:var(--nn-maroon)!important;
+.nn-cta:hover,.dispatch form button:hover,.brief-hero .brief-form button:hover{background:linear-gradient(var(--nn-cream),var(--nn-cream)) no-repeat left center/100% 100%,var(--nn-maroon);color:var(--nn-maroon)!important;
   transform:translateY(-2px);box-shadow:0 8px 20px rgba(110,20,35,.35);letter-spacing:.22em}
 .nn-cta:hover::after,.dispatch form button:hover::after,.brief-hero .brief-form button:hover::after{left:130%;transition:left .6s ease}
 .nn-cta:active,.dispatch form button:active,.brief-hero .brief-form button:active{transform:translateY(0) scale(.95);box-shadow:0 0 0 6px rgba(224,164,173,.45);transition-duration:.08s}
