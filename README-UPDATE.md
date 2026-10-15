@@ -12,7 +12,9 @@ On GitHub: **Add file → Upload files**, drag in the contents of this folder (n
 - **All pages** — one shared header, mobile menu and footer (`assets/noire-shell.js` + `.css`), Libre Caslon / Source Serif type, favicon, meta description, canonical and social tags.
 - **library.html** — The Closed Exit listed; placeholder cards removed.
 - **article.html** — typo fix ("conform").
-- **admin/config.yml** — new "Research Library → The Closed Exit — Narration" entry for uploading the MP3.
+- **admin/config.yml** — new "Research Library → The Closed Exit — Narration" entry for uploading the MP3; essays get Section and Draft fields.
+- **write.html, essays.html, essay.html** (new) — invite-only Writers' Desk, essays list and essay pages. Needs the worker update: see `WRITERS-DESK-SETUP.md`.
+- **worker-oauth.js** — NOT for the repo. Paste it into the Cloudflare worker (setup guide step 5). Delete it from the folder before uploading if you like.
 
 ## Adding the narration
 1. Go to `/admin` → Research Library → The Closed Exit — Narration → upload the MP3 → Publish.

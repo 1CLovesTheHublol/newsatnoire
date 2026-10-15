@@ -28,7 +28,9 @@ collections:
       - { name: title,   label: Title,   widget: string }
       - { name: date,    label: Date,    widget: datetime }
       - { name: author,  label: Author,  widget: string, required: false }
+      - { name: category, label: Section, widget: select, options: [Essays, Politics, History, Culture, Economics, Literature], default: Essays }
       - { name: summary, label: Summary, widget: text,   required: false }
+      - { name: draft,   label: "Draft (hidden from the site)", widget: boolean, default: false, required: false }
       - { name: body,    label: Body,    widget: markdown }
 
   - name: library

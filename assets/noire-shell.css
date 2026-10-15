@@ -2,6 +2,7 @@
 :root{--nn-cream:#F4F1EA;--nn-cream-2:#EDE8DC;--nn-ink:#1A1A1A;--nn-maroon:#6E1423;--nn-maroon-2:#8A1E2F;--nn-muted:#6b6256;--nn-pink:#e0a4ad;
   --nn-display:'Libre Caslon Display',Georgia,serif;--nn-text:'Libre Caslon Text',Georgia,serif;--nn-serif:'Source Serif 4',Georgia,serif;--nn-sans:'Helvetica Neue',Arial,Helvetica,sans-serif}
 a:hover{color:var(--nn-maroon)}
+.nn-header a,.nn-menu a,.nn-footer a{text-decoration:none}
 .wordmark,.sec-masthead h1,.article h1,.cs-title,.nn-display{font-family:var(--nn-display)!important;font-style:normal}
 .wordmark .noire,.wordmark em,.sec-masthead h1 em,.nn-brand em,.foot-brand .wm em{font-family:var(--nn-text);font-style:italic}
 

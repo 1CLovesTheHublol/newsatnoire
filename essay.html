@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Essay — News At Noire</title>
+<meta name="description" content="An essay from News At Noire, a journal of Black political thought.">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="News At Noire">
+<meta property="og:image" content="https://www.newsatnoire.com/news-at-noire-og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/noire-shell.css">
+<style>
+  :root{--cream:#F4F1EA;--cream-2:#EDE8DC;--ink:#1A1A1A;--maroon:#6E1423;--maroon-2:#8A1E2F;--muted:#6b6256;
+    --display:'Libre Caslon Display',Georgia,serif;--text:'Libre Caslon Text',Georgia,serif;--serif:'Source Serif 4',Georgia,serif;--sans:'Helvetica Neue',Arial,Helvetica,sans-serif}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--cream);color:var(--ink);font-family:var(--serif);-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+  a{color:inherit;text-decoration:none}
+  main{flex:1}
+  .progress{position:fixed;top:0;left:0;height:3px;width:0;background:var(--maroon);z-index:100}
+  .head{max-width:720px;margin:0 auto;padding:56px 24px 0}
+  .kicker{display:block;font-family:var(--sans);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--maroon);margin-bottom:18px}
+  .head h1{font-family:var(--display);font-weight:400;font-size:clamp(38px,6vw,60px);line-height:1.06;margin-bottom:16px;text-wrap:balance}
+  .head .sub{font-style:italic;font-size:clamp(19px,2.6vw,23px);line-height:1.45;color:#3a352d;margin-bottom:26px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px 16px;padding:14px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);font-family:var(--sans);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .meta b{color:var(--ink)}
+  .body{max-width:680px;margin:0 auto;padding:36px 24px 20px;font-size:19px;line-height:1.72;color:#241f18}
+  .body p{margin:0 0 22px;text-wrap:pretty}
+  .body h2{font-family:var(--text);font-weight:400;font-size:27px;line-height:1.25;margin:38px 0 14px}
+  .body h3,.body h4{font-family:var(--text);font-weight:400;font-size:22px;margin:30px 0 12px}
+  .body blockquote{border-left:3px solid var(--maroon);padding:2px 0 2px 22px;margin:28px 0;font-style:italic;font-size:22px;color:var(--ink)}
+  .body blockquote p{margin-bottom:10px}
+  .body ul,.body ol{margin:0 0 22px 26px}
+  .body li{margin-bottom:6px}
+  .body a{color:var(--maroon);text-decoration:underline}
+  .body img{max-width:100%;border:1px solid var(--ink);margin:10px 0}
+  .body hr{border:none;text-align:center;margin:34px 0}
+  .body hr::after{content:"✦ ✦ ✦";color:var(--maroon);letter-spacing:.6em;font-size:12px}
+  .share{max-width:680px;margin:0 auto;padding:20px 24px 60px;display:flex;flex-wrap:wrap;align-items:center;gap:10px;border-top:1px solid rgba(26,26,26,.2)}
+  .share .lbl{font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+  .share a,.share button{font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--ink);padding:0 14px;min-height:40px;display:inline-flex;align-items:center;background:none;color:var(--ink);cursor:pointer}
+  .share a:hover,.share button:hover{background:var(--ink);color:var(--cream)}
+  .msg{max-width:620px;margin:0 auto;padding:110px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:16px}
+  .msg h1{font-family:var(--display);font-weight:400;font-size:44px}
+  .msg p{font-size:18px;color:#3a352d}
+  .msg a{font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;border:1px solid var(--ink);padding:0 20px;min-height:44px;display:inline-flex;align-items:center}
+  .msg a:hover{background:var(--ink);color:var(--cream)}
+  [hidden]{display:none!important}
+</style>
+</head>
+<body>
+  <div class="progress" id="progress"></div>
+  <div data-nn-header></div>
+  <script src="assets/noire-shell.js"></script>
+  <script src="assets/noire-md.js"></script>
+
+  <main>
+    <p class="msg" id="loading"><span style="font-style:italic;color:#6b6256">Loading…</span></p>
+    <div class="msg" id="missing" hidden><h1>Essay not found</h1><p id="missing-p">It may have moved, or it isn't published yet.</p><a href="essays.html">All essays</a></div>
+    <article id="essay" hidden>
+      <header class="head">
+        <span class="kicker" id="cat"></span>
+        <h1 id="title"></h1>
+        <p class="sub" id="sub"></p>
+        <div class="meta"><b id="author"></b><span id="date"></span><span id="rt"></span></div>
+      </header>
+      <div class="body" id="body"></div>
+      <div class="share">
+        <span class="lbl">Share</span>
+        <a id="sx" target="_blank" rel="noopener">X / Twitter</a><a id="sf" target="_blank" rel="noopener">Facebook</a><a id="sl" target="_blank" rel="noopener">LinkedIn</a>
+        <button type="button" id="sc">Copy link</button>
+      </div>
+    </article>
+  </main>
+
+  <div data-nn-footer></div>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var slug = new URLSearchParams(location.search).get('e') || '';
+  function fail(text) { $('loading').hidden = true; $('missing').hidden = false; if (text) $('missing-p').textContent = text; }
+  if (!/^[a-z0-9-]+$/.test(slug)) return fail();
+  fetch(window.NOIRE_API + '/essay?e=' + slug).then(function (r) { if (r.status === 404) throw 404; if (!r.ok) throw 0; return r.json(); }).then(function (d) {
+    var m = d.meta || {};
+    $('cat').textContent = m.category || 'Essays';
+    $('title').textContent = m.title || 'Untitled';
+    $('sub').textContent = m.summary || ''; $('sub').hidden = !m.summary;
+    $('author').textContent = m.author ? 'By ' + m.author : 'By The Editors';
+    var dt = m.date ? new Date(m.date) : null; $('date').textContent = dt && !isNaN(dt) ? dt.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
+    $('body').innerHTML = NoireMD.mdToHtml(d.body || '');
+    $('rt').textContent = Math.max(1, Math.round($('body').innerText.split(/\s+/).length / 230)) + ' min read';
+    document.title = (m.title || 'Essay') + ' — News At Noire';
+    var md = document.querySelector('meta[name="description"]'); if (m.summary) md.setAttribute('content', m.summary);
+    var link = document.createElement('link'); link.rel = 'canonical'; link.href = 'https://www.newsatnoire.com/essay.html?e=' + slug; document.head.appendChild(link);
+    var u = encodeURIComponent(link.href), t = encodeURIComponent(m.title || '');
+    $('sx').href = 'https://twitter.com/intent/tweet?url=' + u + '&text=' + t; $('sf').href = 'https://www.facebook.com/sharer/sharer.php?u=' + u; $('sl').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + u;
+    $('sc').onclick = function () { var b = this; navigator.clipboard.writeText(link.href).then(function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy link'; }, 1500); }); };
+    $('loading').hidden = true; $('essay').hidden = false;
+  }).catch(function (e) { fail(e === 404 ? null : "We couldn't load this essay just now. Please try again shortly."); });
+
+  var bar = $('progress');
+  window.addEventListener('scroll', function () { var h = document.documentElement, max = h.scrollHeight - h.clientHeight; bar.style.width = (max > 0 ? h.scrollTop / max * 100 : 0) + '%'; }, { passive: true });
+})();
+</script>
+</body>
+</html>

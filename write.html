@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Writers' Desk — News At Noire</title>
+<meta name="description" content="The News At Noire Writers' Desk. By invitation only.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/noire-shell.css">
+<style>
+  :root{--cream:#F4F1EA;--cream-2:#EDE8DC;--ink:#1A1A1A;--maroon:#6E1423;--maroon-2:#8A1E2F;--muted:#6b6256;--body:#241f18;
+    --display:'Libre Caslon Display',Georgia,serif;--text:'Libre Caslon Text',Georgia,serif;--serif:'Source Serif 4',Georgia,serif;--sans:'Helvetica Neue',Arial,Helvetica,sans-serif}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--cream);color:var(--ink);font-family:var(--serif);-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+  a{color:inherit;text-decoration:none}
+  main{flex:1}
+  [hidden]{display:none!important}
+  .label{font-family:var(--sans);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--maroon)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 22px;border:1px solid var(--ink);background:none;color:var(--ink);font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;text-decoration:none;transition:background .15s,color .15s}
+  .btn:hover{background:var(--ink);color:var(--cream)}
+  .btn.solid{background:var(--maroon);border-color:var(--maroon);color:var(--cream)}
+  .btn.solid:hover{background:var(--maroon-2)}
+  .btn[disabled]{opacity:.55;cursor:wait}
+  .linkbtn{background:none;border:none;font-family:var(--sans);font-size:13px;color:var(--maroon);text-decoration:underline;cursor:pointer;min-height:36px}
+  .err{font-family:var(--sans);font-size:14px;color:var(--maroon);min-height:20px}
+  .demo{background:var(--ink);color:var(--cream);font-family:var(--sans);font-size:12px;letter-spacing:.08em;text-align:center;padding:9px 16px}
+
+  .gate{max-width:520px;margin:0 auto;padding:72px 24px 96px;display:flex;flex-direction:column;gap:18px}
+  .gate h1{font-family:var(--display);font-weight:400;font-size:clamp(40px,7vw,58px);line-height:1.02}
+  .gate p{font-size:18px;line-height:1.55;color:#3a352d}
+  .gate .rule{height:7px;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink)}
+  .field{display:flex;flex-direction:column;gap:8px}
+  .field span{font-family:var(--sans);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .field input{min-height:50px;padding:0 14px;border:1px solid var(--ink);background:#fff;font-family:var(--sans);font-size:16px;color:var(--ink)}
+  .field input:focus{outline:none;box-shadow:0 0 0 3px rgba(110,20,35,.18)}
+  .field input.code{font-family:var(--text);font-size:30px;letter-spacing:.4em;text-align:center}
+  .row{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}
+
+  .bar{position:sticky;z-index:40;background:rgba(244,241,234,.97);border-bottom:1px solid rgba(26,26,26,.2)}
+  .bar .in{max-width:1000px;margin:0 auto;padding:8px clamp(12px,3vw,24px);display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .tools{display:flex;gap:2px;flex-wrap:wrap}
+  .tools button{min-width:40px;height:40px;padding:0 10px;border:1px solid transparent;background:none;color:var(--ink);cursor:pointer;font-family:var(--serif);font-size:16px}
+  .tools button:hover{border-color:rgba(26,26,26,.3)}
+  .tools button[aria-pressed="true"]{background:var(--ink);color:var(--cream)}
+  .tools .sep{width:1px;background:rgba(26,26,26,.2);margin:6px 6px}
+  .status{margin-left:auto;font-family:var(--sans);font-size:12px;color:var(--muted);white-space:nowrap}
+  .sheet{max-width:720px;margin:0 auto;padding:40px 24px 120px;display:flex;flex-direction:column;gap:14px}
+  .who{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-family:var(--sans);font-size:12px;color:var(--muted);padding-bottom:16px;border-bottom:1px solid rgba(26,26,26,.2)}
+  .who b{color:var(--ink);font-weight:600}
+  select.cat{align-self:flex-start;margin-top:14px;border:1px solid rgba(110,20,35,.4);background:none;color:var(--maroon);font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;padding:9px 12px;cursor:pointer}
+  textarea.t,textarea.s{width:100%;border:none;background:none;resize:none;overflow:hidden;color:var(--ink);outline:none}
+  textarea.t{font-family:var(--display);font-size:clamp(36px,6vw,52px);line-height:1.1}
+  textarea.s{font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.6vw,23px);line-height:1.45;color:#3a352d}
+  textarea::placeholder,.by input::placeholder{color:#a79e90}
+  .by{display:flex;align-items:center;gap:8px;padding:12px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);font-family:var(--sans);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .by input{flex:1;border:none;background:none;outline:none;font-family:var(--sans);font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--ink);min-height:30px}
+  #body{min-height:50vh;padding-top:18px;font-size:19px;line-height:1.72;color:var(--body);outline:none}
+  #body:empty::before{content:attr(data-ph);color:#a79e90;font-style:italic}
+  #body p{margin:0 0 22px}
+  #body h2{font-family:var(--text);font-weight:400;font-size:27px;line-height:1.25;margin:34px 0 14px}
+  #body h3{font-family:var(--text);font-weight:400;font-size:22px;margin:28px 0 12px}
+  #body blockquote{border-left:3px solid var(--maroon);padding:2px 0 2px 22px;margin:26px 0;font-style:italic;font-size:22px;color:var(--ink)}
+  #body ul,#body ol{margin:0 0 22px 26px}
+  #body a{color:var(--maroon);text-decoration:underline}
+  .foot-note{font-family:var(--sans);font-size:13px;line-height:1.5;color:var(--muted);padding-top:18px;border-top:1px solid rgba(26,26,26,.2)}
+
+  .done{max-width:620px;margin:0 auto;padding:90px 24px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px}
+  .done h1{font-family:var(--display);font-weight:400;font-size:clamp(40px,7vw,60px);line-height:1.02}
+  .done p{font-size:18px;line-height:1.55;color:#3a352d}
+</style>
+</head>
+<body>
+  <div data-nn-header></div>
+  <script src="assets/noire-shell.js"></script>
+  <script src="assets/noire-md.js"></script>
+  <div class="demo" id="demo" hidden>Preview mode: sign-in is skipped and nothing will be published.</div>
+
+  <main>
+    <!-- Step 1: email -->
+    <section class="gate" id="s-email" hidden>
+      <span class="label">The Writers' Desk</span>
+      <h1>Write for News At Noire</h1>
+      <div class="rule"></div>
+      <p>The desk is by invitation. Enter the email address the editors approved and we'll send you a six-digit sign-in code.</p>
+      <form id="f-email" class="field" novalidate>
+        <span>Email address</span>
+        <input type="email" id="email" autocomplete="email" required placeholder="you@example.com">
+        <div class="err" id="e-email" role="alert"></div>
+        <div class="row"><button class="btn solid" id="b-email" type="submit">Send code</button></div>
+      </form>
+    </section>
+
+    <!-- Step 2: code -->
+    <section class="gate" id="s-code" hidden>
+      <span class="label">The Writers' Desk</span>
+      <h1>Check your inbox</h1>
+      <div class="rule"></div>
+      <p>If <b id="sent-to"></b> has access, a code is on its way. It expires in 10 minutes.</p>
+      <form id="f-code" class="field" novalidate>
+        <span>Six-digit code</span>
+        <input class="code" id="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]*" required>
+        <div class="err" id="e-code" role="alert"></div>
+        <div class="row"><button class="btn solid" id="b-code" type="submit">Sign in</button><button class="linkbtn" type="button" id="resend">Send a new code</button><button class="linkbtn" type="button" id="other">Use a different email</button></div>
+      </form>
+    </section>
+
+    <!-- Step 3: editor -->
+    <section id="s-edit" hidden>
+      <div class="bar" id="bar">
+        <div class="in">
+          <div class="tools" role="toolbar" aria-label="Formatting">
+            <button type="button" data-cmd="bold" title="Bold (Ctrl+B)" aria-label="Bold"><b>B</b></button>
+            <button type="button" data-cmd="italic" title="Italic (Ctrl+I)" aria-label="Italic"><i>I</i></button>
+            <button type="button" data-cmd="link" title="Link" aria-label="Link" style="text-decoration:underline">Link</button>
+            <span class="sep"></span>
+            <button type="button" data-block="h2" title="Heading" aria-label="Heading">H</button>
+            <button type="button" data-block="blockquote" title="Quote" aria-label="Quote">❝</button>
+            <button type="button" data-cmd="insertUnorderedList" title="List" aria-label="Bulleted list">•&#8202;List</button>
+            <button type="button" data-block="p" title="Plain paragraph" aria-label="Plain paragraph">¶</button>
+          </div>
+          <span class="status" id="status">New essay</span>
+          <button class="btn solid" id="publish" type="button">Publish</button>
+        </div>
+      </div>
+      <div class="sheet">
+        <div class="who"><span>Signed in as <b id="who"></b></span><span><button class="linkbtn" type="button" id="discard">Clear draft</button> · <button class="linkbtn" type="button" id="signout">Sign out</button></span></div>
+        <select class="cat" id="cat" aria-label="Section">
+          <option>Essays</option><option>Politics</option><option>History</option><option>Culture</option><option>Economics</option><option>Literature</option>
+        </select>
+        <textarea class="t" id="title" rows="1" placeholder="Title" aria-label="Title" maxlength="200"></textarea>
+        <textarea class="s" id="summary" rows="1" placeholder="A one-line summary for the essays page" aria-label="Summary" maxlength="400"></textarea>
+        <label class="by">By <input id="author" placeholder="Your name" aria-label="Author name" maxlength="120"></label>
+        <div id="body" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Essay text" data-ph="Begin writing. Paste from a document if you like; formatting is cleaned up as you paste."></div>
+        <div class="err" id="e-pub" role="alert"></div>
+        <p class="foot-note">Your draft saves on this device as you type. Publishing adds the essay to the Essays page within about two minutes. To change or remove an essay after publishing, contact the editors.</p>
+      </div>
+    </section>
+
+    <!-- Step 4: done -->
+    <section class="done" id="s-done" hidden>
+      <span class="label" id="done-k">Published</span>
+      <h1 id="done-h">It's on the site.</h1>
+      <p id="done-p">Your essay will appear on the Essays page within about two minutes.</p>
+      <div class="row" style="justify-content:center"><a class="btn solid" id="done-view" href="essays.html">View essay</a><button class="btn" type="button" id="again">Write another</button></div>
+    </section>
+  </main>
+
+  <div data-nn-footer></div>
+
+<script>
+(function () {
+  var API = window.NOIRE_API, DEMO = /[?&]demo\b/.test(location.search);
+  var TK = 'noire-desk-token', DK = 'noire-desk-draft';
+  var $ = function (id) { return document.getElementById(id); };
+  var me = null, saveT = null;
+  function show(id) { ['s-email', 's-code', 's-edit', 's-done'].forEach(function (s) { $(s).hidden = s !== id; }); window.scrollTo(0, 0); if (id === 's-edit') { placeBar(); grow($('title')); grow($('summary')); } }
+  function api(path, body, auth) {
+    var h = { 'Content-Type': 'application/json' }; if (auth) h.Authorization = 'Bearer ' + localStorage.getItem(TK);
+    return fetch(API + path, { method: body ? 'POST' : 'GET', headers: h, body: body ? JSON.stringify(body) : undefined })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { if (!r.ok) throw new Error(d.error || 'Something went wrong. Try again.'); return d; }); }, function () { throw new Error("Couldn't reach the desk. Check your connection and try again."); });
+  }
+  function busy(btn, on, label) { btn.disabled = on; if (label) btn.textContent = label; }
+
+  // ---- Sign-in ----
+  var email = '';
+  $('f-email').onsubmit = function (e) {
+    e.preventDefault(); email = $('email').value.trim().toLowerCase(); $('e-email').textContent = '';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { $('e-email').textContent = 'Enter a valid email address.'; return; }
+    busy($('b-email'), true, 'Sending…');
+    api('/writer/request-code', { email: email }).then(function () { $('sent-to').textContent = email; show('s-code'); $('code').focus(); })
+      .catch(function (err) { $('e-email').textContent = err.message; }).then(function () { busy($('b-email'), false, 'Send code'); });
+  };
+  $('f-code').onsubmit = function (e) {
+    e.preventDefault(); var code = $('code').value.replace(/\D/g, ''); $('e-code').textContent = '';
+    if (code.length !== 6) { $('e-code').textContent = 'Enter all six digits.'; return; }
+    busy($('b-code'), true, 'Checking…');
+    api('/writer/verify', { email: email, code: code }).then(function (d) { localStorage.setItem(TK, d.token); signedIn({ email: d.email, name: d.name }); })
+      .catch(function (err) { $('e-code').textContent = err.message; }).then(function () { busy($('b-code'), false, 'Sign in'); });
+  };
+  $('code').addEventListener('input', function () { this.value = this.value.replace(/\D/g, '').slice(0, 6); if (this.value.length === 6) $('f-code').requestSubmit(); });
+  $('resend').onclick = function () { api('/writer/request-code', { email: email }).then(function () { $('e-code').textContent = 'A new code is on its way.'; }, function (err) { $('e-code').textContent = err.message; }); };
+  $('other').onclick = function () { show('s-email'); $('email').focus(); };
+  $('signout').onclick = function () { localStorage.removeItem(TK); me = null; show('s-email'); };
+
+  function signedIn(u) { me = u; $('who').textContent = u.name ? u.name + ' (' + u.email + ')' : u.email; if (!$('author').value && u.name) $('author').value = u.name; show('s-edit'); }
+
+  // ---- Editor ----
+  var body = $('body');
+  try { document.execCommand('defaultParagraphSeparator', false, 'p'); } catch (e) {}
+  function grow(t) { t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; }
+  ['title', 'summary'].forEach(function (id) { $(id).addEventListener('input', function () { grow(this); queueSave(); }); $(id).addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); (id === 'title' ? $('summary') : body).focus(); } }); });
+  $('author').addEventListener('input', queueSave); $('cat').addEventListener('change', queueSave);
+  body.addEventListener('input', function () { if (body.innerHTML === '<br>' || body.innerHTML === '<p><br></p>') body.innerHTML = ''; queueSave(); });
+  body.addEventListener('focus', function () { if (!body.innerHTML.trim()) { body.innerHTML = '<p><br></p>'; var r = document.createRange(); r.setStart(body.firstChild, 0); var s = getSelection(); s.removeAllRanges(); s.addRange(r); } });
+  body.addEventListener('blur', function () { if (!body.textContent.trim()) body.innerHTML = ''; });
+  body.addEventListener('paste', function (e) {
+    e.preventDefault(); var t = (e.clipboardData || window.clipboardData).getData('text/plain'); if (!t) return;
+    var parts = /\n\s*\n/.test(t) ? t.split(/\n\s*\n/) : t.split(/\n/);
+    document.execCommand('insertHTML', false, parts.map(function (p) { p = p.trim(); return p ? '<p>' + NoireMD.escape(p).replace(/\n/g, '<br>') + '</p>' : ''; }).join(''));
+  });
+  document.querySelectorAll('.tools button').forEach(function (b) {
+    b.addEventListener('mousedown', function (e) { e.preventDefault(); });
+    b.addEventListener('click', function () {
+      body.focus();
+      if (b.dataset.block) { var cur = document.queryCommandValue('formatBlock').toLowerCase(); document.execCommand('formatBlock', false, cur === b.dataset.block ? 'p' : b.dataset.block); }
+      else if (b.dataset.cmd === 'link') { var u = prompt('Link address (https://…)'); if (u) document.execCommand('createLink', false, /^(https?:|mailto:)/.test(u) ? u : 'https://' + u); }
+      else document.execCommand(b.dataset.cmd);
+      queueSave(); syncTools();
+    });
+  });
+  function syncTools() {
+    var blk = (document.queryCommandValue('formatBlock') || '').toLowerCase();
+    document.querySelectorAll('.tools button').forEach(function (b) {
+      var on = b.dataset.block ? blk === b.dataset.block && b.dataset.block !== 'p' : (b.dataset.cmd === 'bold' || b.dataset.cmd === 'italic' || b.dataset.cmd === 'insertUnorderedList') && document.queryCommandState(b.dataset.cmd);
+      b.setAttribute('aria-pressed', String(!!on));
+    });
+  }
+  document.addEventListener('selectionchange', function () { if (document.activeElement === body) syncTools(); });
+
+  function words() { var t = body.innerText.trim(); return t ? t.split(/\s+/).length : 0; }
+  function queueSave() { clearTimeout(saveT); $('status').textContent = 'Saving…'; saveT = setTimeout(save, 600); }
+  function save() {
+    var d = { title: $('title').value, summary: $('summary').value, author: $('author').value, cat: $('cat').value, html: body.innerHTML, at: Date.now() };
+    try { localStorage.setItem(DK, JSON.stringify(d)); } catch (e) {}
+    var w = words(); $('status').textContent = w + ' words · saved on this device';
+  }
+  function load() {
+    try { var d = JSON.parse(localStorage.getItem(DK) || 'null'); if (!d) return; $('title').value = d.title || ''; $('summary').value = d.summary || ''; $('author').value = d.author || ''; $('cat').value = d.cat || 'Essays'; body.innerHTML = d.html || ''; $('status').textContent = words() + ' words · draft restored'; } catch (e) {}
+  }
+  function clearDraft() { localStorage.removeItem(DK); $('title').value = ''; $('summary').value = ''; body.innerHTML = ''; $('cat').value = 'Essays'; $('status').textContent = 'New essay'; grow($('title')); grow($('summary')); }
+  $('discard').onclick = function () { if (confirm('Clear this draft? This cannot be undone.')) clearDraft(); };
+
+  $('publish').onclick = function () {
+    var md = NoireMD.htmlToMd(body), title = $('title').value.trim(); $('e-pub').textContent = '';
+    if (!title) { $('e-pub').textContent = 'Add a title before publishing.'; $('title').focus(); return; }
+    if (md.length < 50) { $('e-pub').textContent = 'The essay is too short to publish.'; body.focus(); return; }
+    if (!confirm('Publish "' + title + '" to News At Noire?')) return;
+    var payload = { title: title, summary: $('summary').value.trim(), author: $('author').value.trim(), category: $('cat').value, body: md };
+    busy($('publish'), true, 'Publishing…');
+    var done = function (d) {
+      clearDraft();
+      $('done-k').textContent = d.draft ? 'Submitted' : 'Published';
+      $('done-h').textContent = d.draft ? 'Sent to the editors.' : "It's on the site.";
+      $('done-p').textContent = d.draft ? 'The editors will review it before it appears on the Essays page.' : 'Your essay will appear on the Essays page within about two minutes.';
+      $('done-view').hidden = !!d.draft; $('done-view').href = 'essay.html?e=' + encodeURIComponent(d.slug);
+      show('s-done');
+    };
+    (DEMO ? new Promise(function (r) { setTimeout(function () { r({ slug: 'demo', draft: false }); }, 700); }) : api('/writer/submit', payload, true))
+      .then(done).catch(function (err) { $('e-pub').textContent = err.message; if (/session|sign in/i.test(err.message)) { localStorage.removeItem(TK); } })
+      .then(function () { busy($('publish'), false, 'Publish'); });
+  };
+  $('again').onclick = function () { show('s-edit'); $('title').focus(); };
+
+  function placeBar() { var h = document.querySelector('.nn-header'); $('bar').style.top = (h ? h.offsetHeight : 0) + 'px'; }
+  window.addEventListener('resize', placeBar);
+
+  // ---- Start ----
+  load();
+  if (DEMO) { $('demo').hidden = false; signedIn({ email: 'preview@newsatnoire.com', name: '' }); return; }
+  if (!localStorage.getItem(TK)) { show('s-email'); return; }
+  api('/writer/me', null, true).then(signedIn).catch(function () { localStorage.removeItem(TK); show('s-email'); });
+})();
+</script>
+</body>
+</html>

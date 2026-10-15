@@ -1,12 +1,14 @@
 /* News At Noire — injects the shared header, mobile menu and footer, so every page stays in sync. */
 (function () {
+  window.NOIRE_API = window.NOIRE_API || 'https://newsatnoire.cxml42903.workers.dev';
   var NAV = [
-    ['Essays', 'coming-soon.html', 1], ['Politics', 'coming-soon.html', 1], ['History', 'coming-soon.html', 1],
-    ['Culture', 'coming-soon.html', 1], ['Economics', 'coming-soon.html', 1], ['Literature', 'literature.html'],
-    ['Library', 'library.html'], ['Audio', 'audio.html'], ['Events', 'events.html']
+    ['Essays', 'essays.html'], ['Politics', 'coming-soon.html', 1], ['History', 'coming-soon.html', 1],
+    ['Culture', 'coming-soon.html', 1], ['Economics', 'coming-soon.html', 1], ['Literature', 'coming-soon.html', 1],
+    ['Library', 'library.html'], ['Audio', 'coming-soon.html', 1], ['Events', 'coming-soon.html', 1]
   ];
   var here = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
   if (here === 'closed-exit.html') here = 'library.html';
+  if (here === 'essay.html') here = 'essays.html';
   var SEARCH_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg>';
   var brand = '<a class="nn-brand" href="index.html">News At <em>Noire</em></a>';
   var cur = function (href) { return href === here ? ' aria-current="page"' : ''; };
@@ -30,9 +32,9 @@
   var col = function (h, links) { return '<div class="nn-col"><h5>' + h + '</h5>' + links.map(function (l) { return '<a href="' + l[1] + '">' + l[0] + '</a>'; }).join('') + '</div>'; };
   var footer = '<footer class="nn-footer"><div class="nn-wrap nn-cols">' +
     '<div><div class="nn-wm">News At <em>Noire</em></div><p>A Journal of Black Political Thought. Published independently.</p></div>' +
-    col('Sections', [['Essays', 'coming-soon.html'], ['Politics', 'coming-soon.html'], ['History', 'coming-soon.html'], ['Culture', 'coming-soon.html'], ['Economics', 'coming-soon.html']]) +
-    col('Read', [['Literature', 'literature.html'], ['Research Library', 'library.html'], ['Audio', 'audio.html'], ['Events', 'events.html'], ['Noire Briefing', 'newsletter.html'], ['Search', 'search.html']]) +
-    col('The Publication', [['About', 'coming-soon.html'], ['Masthead', 'coming-soon.html'], ['Submissions', 'coming-soon.html'], ['Contact', 'coming-soon.html']]) +
+    col('Sections', [['Essays', 'essays.html'], ['Politics', 'coming-soon.html'], ['History', 'coming-soon.html'], ['Culture', 'coming-soon.html'], ['Economics', 'coming-soon.html']]) +
+    col('Read', [['Literature', 'coming-soon.html', 1], ['Research Library', 'library.html'], ['Audio', 'coming-soon.html'], ['Events', 'coming-soon.html'], ['Noire Briefing', 'newsletter.html'], ['Search', 'search.html']]) +
+    col('The Publication', [['About', 'coming-soon.html'], ['Masthead', 'coming-soon.html'], ['Submissions', 'coming-soon.html'], ['Writers\' Desk', 'write.html'], ['Contact', 'coming-soon.html']]) +
     '</div><div class="nn-bottom"><div class="nn-wrap"><span>© ' + new Date().getFullYear() + ' News At Noire</span><span>newsatnoire.com</span></div></div></footer>';
 
   var h = document.querySelector('[data-nn-header]'); if (h) h.outerHTML = header + menu;
