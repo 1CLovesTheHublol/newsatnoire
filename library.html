@@ -75,6 +75,11 @@
   .doc{border:1px solid var(--ink);background:#fff;display:flex;flex-direction:column;transition:box-shadow .15s}
   .doc:hover{box-shadow:0 8px 26px rgba(26,26,26,.12)}
   .doc .cover{aspect-ratio:4/3;background:linear-gradient(155deg,#2a0a10,#4a0f1a 60%,#6E1423);position:relative;border-bottom:1px solid var(--ink);display:flex;align-items:flex-end;padding:14px}
+  .doc .cover.has-img{background-size:cover;background-position:center 35%;background-color:#2a0a10;overflow:hidden}
+  .doc .cover.has-img::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,26,26,.55) 0%,rgba(26,26,26,0) 28%,rgba(26,26,26,0) 60%,rgba(42,10,16,.85) 100%);pointer-events:none}
+  .doc .cover.has-img>*{position:relative;z-index:1}
+  .doc .cover.has-img .pages{position:absolute;color:var(--cream);background:rgba(26,26,26,.7);padding:3px 7px}
+  .doc .cover.has-img .badge{background:rgba(26,26,26,.55)}
   .doc .cover .badge{font-family:var(--sans);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cream);border:1px solid rgba(244,241,234,.5);padding:4px 9px}
   .doc .cover .pages{position:absolute;top:12px;right:14px;font-family:var(--sans);font-size:.62rem;letter-spacing:.08em;color:rgba(244,241,234,.75)}
   .doc .body{padding:18px 18px 20px;display:flex;flex-direction:column;flex:1}
@@ -157,7 +162,7 @@
   <!-- Library grid (CMS-ready item template ×3) -->
   <section class="lib-grid" data-cms="library-items">
     <article class="doc">
-      <a class="cover" href="closed-exit.html"><span class="pages">PDF · 28 pp.</span><span class="badge">Monograph</span></a>
+      <a class="cover has-img" href="closed-exit.html" style="background-image:url(assets/closed-exit-cover.webp)"><span class="pages">PDF · 28 pp.</span><span class="badge">Monograph</span></a>
       <div class="body">
         <h3><a href="closed-exit.html">The Closed Exit: Racialisation, Emancipation, and the Making of Anti-Blackness</a></h3>
         <div class="author">1C, Bantu &amp; Rell · 2026</div>
