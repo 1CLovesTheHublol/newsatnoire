@@ -81,6 +81,25 @@
   [aria-pressed="true"] .switch{background:var(--maroon-2)}
   [aria-pressed="true"] .switch::after{left:16px}
   .empty{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px}
+  .empty[hidden],#full[hidden]{display:none}
+  .rate-wrap{position:relative}
+  .speed{position:absolute;bottom:calc(100% + 12px);right:-60px;width:300px;background:#262421;color:var(--cream);border:1px solid rgba(244,241,234,.18);border-radius:12px;padding:14px 16px 16px;box-shadow:0 14px 40px rgba(0,0,0,.45);font-family:var(--sans);z-index:60}
+  .speed[hidden]{display:none}
+  .speed .hd{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--pink);margin-bottom:10px}
+  .speed .val{text-align:center;font-family:var(--text);font-size:26px;margin-bottom:10px}
+  .speed .sl{display:flex;align-items:center;gap:10px}
+  .speed .st{width:36px;height:36px;border-radius:50%;border:none;background:rgba(244,241,234,.12);color:var(--cream);font-size:20px;line-height:1;cursor:pointer;flex:none;transition:background .15s}
+  .speed .st:hover{background:rgba(244,241,234,.24)}
+  .speed input[type=range]{flex:1;-webkit-appearance:none;appearance:none;height:4px;border-radius:2px;background:linear-gradient(var(--cream),var(--cream)) no-repeat 0 0/var(--fill,25%) 100%,rgba(244,241,234,.25);cursor:pointer}
+  .speed input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--cream);border:3px solid var(--maroon);transition:transform .12s}
+  .speed input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--cream);border:3px solid var(--maroon)}
+  .speed input[type=range]:active::-webkit-slider-thumb{transform:scale(1.2)}
+  .speed .pre{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:14px}
+  .speed .pre button{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:none;color:var(--cream);font:inherit;cursor:pointer;padding:0}
+  .speed .pre span{display:block;width:100%;padding:8px 0;border-radius:999px;background:rgba(244,241,234,.1);font-size:13px;transition:background .15s}
+  .speed .pre button:hover span{background:rgba(244,241,234,.2)}
+  .speed .pre button.on span{background:var(--maroon);color:var(--cream)}
+  .speed .pre small{font-size:10px;color:#b7b1a5;min-height:12px}
   .empty .msg{flex:1;min-width:220px;font-family:var(--sans);font-size:14px;color:#e9e4d9;line-height:1.4}
   .empty .msg b{display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);font-weight:400;margin-bottom:3px}
   .syncbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;padding:10px 14px;background:var(--cream);color:var(--ink);font-family:var(--sans);font-size:13px;line-height:1.4}
@@ -133,7 +152,25 @@
             <div class="times"><span id="cur">0:00</span><span id="dur">—:—</span></div>
           </div>
           <div class="ctrls">
-            <button class="pbtn rate" id="rate" aria-label="Playback speed">1×</button>
+            <span class="rate-wrap">
+              <button class="pbtn rate" id="rate" aria-label="Playback speed" aria-expanded="false" aria-controls="speed">1×</button>
+              <div class="speed" id="speed" role="dialog" aria-label="Playback speed" hidden>
+                <div class="hd">Playback speed</div>
+                <div class="val" id="spv">1.00×</div>
+                <div class="sl">
+                  <button class="st" id="spm" aria-label="Slower">−</button>
+                  <input type="range" id="spr" min="0.5" max="2.5" step="0.05" value="1" aria-label="Speed">
+                  <button class="st" id="spp" aria-label="Faster">+</button>
+                </div>
+                <div class="pre" id="spre">
+                  <button data-r="0.75"><span>0.75</span><small></small></button>
+                  <button data-r="1"><span>1.0</span><small>Normal</small></button>
+                  <button data-r="1.25"><span>1.25</span><small></small></button>
+                  <button data-r="1.5"><span>1.5</span><small></small></button>
+                  <button data-r="2"><span>2.0</span><small></small></button>
+                </div>
+              </div>
+            </span>
             <button class="pbtn" id="ra" aria-pressed="true"><span class="switch"></span>Read-along</button>
             <button class="pbtn editor-only" id="sync" hidden title="Pin sentences to the audio so the highlight stays in time">Sync</button>
             <button class="pbtn link editor-only" id="replace" hidden>Replace</button>
@@ -238,7 +275,27 @@
     if (readAlong) setActive(timeToUnit(t));
   });
   $('scrub').onclick = function (e) { var r = this.getBoundingClientRect(); if (audio.duration) { audio.currentTime = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)) * audio.duration; detached = false; $('ret').hidden = true; } };
-  $('rate').onclick = function () { rateIdx = (rateIdx + 1) % RATES.length; audio.playbackRate = RATES[rateIdx]; this.textContent = RATES[rateIdx] + '×'; };
+  var RATE_KEY = 'noire-reader-rate';
+  function setRate(r) {
+    r = Math.round(Math.max(0.5, Math.min(2.5, r)) * 100) / 100;
+    audio.playbackRate = r; RATES[rateIdx] = r;
+    $('rate').textContent = (r % 1 ? r : r.toFixed(0)) + '×';
+    $('spv').textContent = r.toFixed(2) + '×'; $('spr').value = r;
+    $('spr').style.setProperty('--fill', ((r - 0.5) / 2 * 100) + '%');
+    [].forEach.call($('spre').children, function (b) { b.classList.toggle('on', Math.abs(+b.dataset.r - r) < 0.001); });
+    try { localStorage.setItem(RATE_KEY, String(r)); } catch (e) {}
+  }
+  function toggleSpeed(open) { var p = $('speed'); open = open == null ? p.hidden : open; p.hidden = !open; $('rate').setAttribute('aria-expanded', String(open)); }
+  $('rate').onclick = function (e) { e.stopPropagation(); toggleSpeed(); };
+  $('speed').onclick = function (e) { e.stopPropagation(); };
+  $('spr').oninput = function () { setRate(+this.value); };
+  $('spm').onclick = function () { setRate(audio.playbackRate - 0.05); };
+  $('spp').onclick = function () { setRate(audio.playbackRate + 0.05); };
+  [].forEach.call($('spre').children, function (b) { b.onclick = function () { setRate(+b.dataset.r); }; });
+  document.addEventListener('click', function () { toggleSpeed(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') toggleSpeed(false); });
+  audio.addEventListener('loadedmetadata', function () { audio.playbackRate = RATES[rateIdx]; });
+  (function () { var r = 1; try { r = parseFloat(localStorage.getItem(RATE_KEY)) || 1; } catch (e) {} setRate(r); })();
   $('ra').onclick = function () {
     readAlong = !readAlong; this.setAttribute('aria-pressed', String(readAlong)); document.body.classList.toggle('clickable', readAlong && hasAudio);
     if (!readAlong) { if (units[active]) units[active].classList.remove('on'); active = -1; $('ret').hidden = true; } else { detached = false; setActive(timeToUnit(audio.currentTime)); }
